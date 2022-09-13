@@ -150,7 +150,7 @@ This content should change each time the user chooses a new option in the dropdo
 
 ### Reset Reviews
 
-A button with an `id` of `reset-reviews`, when clicked should empty the `ul` where the reviews were being populated.
+A button with an `id` of `reset-reviews`, when clicked, should empty the `ul` where the reviews were being populated.
 
 ### Get People for Movie
 
