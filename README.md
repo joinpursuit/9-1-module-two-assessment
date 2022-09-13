@@ -101,7 +101,7 @@ While it does not need to look exactly the same, it should include the following
   - [ ] `section`
     - [ ] `h2`: `People`
     - [ ] `ol`: starts empty, will be populated with `li` as people `names` are added
-      - [ ] `button`, `id` = `show-people`, text `Show People`
+    - [ ] `button`, `id` = `show-people`, text `Show People`
   - [ ] `section`, `id` = `reviews`
     - [ ] `h2`: `Reviews`
     - [ ] `ul`: starts empty, will be populated with `li` as reviews are added
