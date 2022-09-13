@@ -10,7 +10,7 @@ You may receive partial credit (0.5 points) for code that is close to passing th
 
 ## Asking for Help
 
-If you have built a feature that works as expected, but is failing the tests and you cannot figure out why for more than 10-20 minutes, please reach out to an instructor to help guide you. 
+If you have built a feature that works as expected, but is failing the tests and you cannot figure out why for more than 10-20 minutes, please reach out to an instructor to help guide you.
 
 ## Assessment Setup
 
@@ -28,8 +28,7 @@ This will install the libraries needed to run the tests.
 
 1. Open up the repository in VSCode. Follow the instructions below to complete the Lab.
 
-
-1. There is a `main.js` file for you with some starter code. Unfortunately, at least one of the tests in Cypress has been reported as `flakey` (works sometimes and not others with the correct implementation of the feature). This  stater code should resolve the flakines. It is a non-optimal solution and a proper solution is being researched. However, until that solution is found, please use this work around. If you are not sure what to do with this starter code, please reach out to an instructor. 
+1. There is a `main.js` file for you with some starter code. Unfortunately, at least one of the tests in Cypress has been reported as `flakey` (works sometimes and not others with the correct implementation of the feature). This stater code should resolve the flakines. It is a non-optimal solution and a proper solution is being researched. However, until that solution is found, please use this work around. If you are not sure what to do with this starter code, please reach out to an instructor.
 
 ### Tests
 
@@ -148,12 +147,6 @@ This content should change each time the user choose a new option in the dropdow
       ![Page after multiple reviews have been submitted.](./images/readme/multi-review.png)
 
 - [ ] If the user tries to make a review when no movie is selected, an alert saying `Please select a movie first`, should appear
-
-### Responsive Design
-
-Update your page so that when the screen size is small, the Reviews section of the page disappears.
-
-- [ ] `#reviews` should have a display of `block` if the viewport width is greater than 500px and a display of `none` if the viewport is less than or equal to 500px.
 
 ### Reset Reviews
 
