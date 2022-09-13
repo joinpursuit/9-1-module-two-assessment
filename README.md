@@ -131,7 +131,7 @@ An `h3` with the movie's title appear in the display-info section of the page.
 A `p` with the movie's release year.
 A `p` with the description of the movie.
 
-This content should change each time the user choose a new option in the dropdown list.
+This content should change each time the user chooses a new option in the dropdown list.
 ![Page view when a dropdown option is selected](./images/readme/show.png)
 
 ### Add Reviews
