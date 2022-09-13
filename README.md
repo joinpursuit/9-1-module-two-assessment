@@ -88,16 +88,14 @@ While it does not need to look exactly the same, it should include the following
     - [ ] `select`: `id` of `titles`
       - [ ] `option` (blank, no value), remaining `option`s will be populated with the movie titles from the API
   - [ ] `section`
-  - [ ] `h2`: `Add a review`
+    - [ ] `h2`: `Add a review`
     - [ ] `form`
       - [ ] `label`, `for` = `review`: `Your review`
       - [ ] `input`, `id` = `review`: type text
       - [ ] `input`: type submit
   - [ ] `section`
-
     - [ ] `h2`: `Movie details`
     - [ ] `div`, `id` = `display-info`: starts empty, will be populated with `h3` and two `p` elements, when a movie is selected
-
   - [ ] `section`
     - [ ] `h2`: `People`
     - [ ] `ol`: starts empty, will be populated with
