@@ -123,7 +123,7 @@ The first option should be blank, with no `value` and no text (see first image).
 
 ### Movie Description
 
-This content should change each time the user choose a new option in the dropdown list.
+This content should change each time the user chooses a new option in the dropdown list.
 
 When a movie is selected through one of the options from the dropdown list, the user should see:
 
