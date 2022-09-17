@@ -4,7 +4,7 @@ This challenge is designed to assess the HTML, CSS, and JavaScript skills you ha
 
 There are 7 features that need to be created. Each completed feature (passes all the tests) will be worth 1 point.
 
-A minium of 5 points must be attained in order to pass this assessment.
+A minimum of 5 points must be attained in order to pass this assessment.
 
 You may receive partial credit (0.5 points) for code that is close to passing the tests, but does not pass all the tests.
 
