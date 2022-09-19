@@ -7,7 +7,8 @@ const review = document.querySelector('#review')
 const button = document.querySelector('#reset-reviews')
 const form = document.querySelector('form')
 
-let allow
+// let allow
+//Save in case doing carlos call back thingy
 let reviews = review.value
 let movies = select.value
 
@@ -15,22 +16,39 @@ function run() {
  fetch(url)
  .then((res) => res.json())
  .then((data) => {
-    allow = data
-    //erase if anything 
-
+    // allow = data
+    //erase if anything
     data.forEach((movie) =>{
         let option = document.createElement('option')
+        let id = movie.id
         option.value = movie.title
         option.innerHTML = movie.title
         select.append(option)
+
+        select.addEventListener('change', (event) =>{
+            option.value = id
+            if(event.target.value === id){
+                display.innerHTML =''
+                const title = document.createElement('h3')
+                const date = document.createElement('p')
+                const description = document.createElement('p')
+
+                title.textContent = `${movie.title}`
+                date.textContent = `${movie.release_date}`
+                description.textContent = `${movie.description}`
+
+                display.append(title, date, description)
+            }
+        })
     })
+    
  })
  .catch(error =>{
     console.log(error)
  });
  
  //EVENT LISTENERS MIGHT HAVE TO BE OUTSIDE CODE
-    
+   
     form.addEventListener('submit', (event) => {
         event.preventDefault()
         const li = document.createElement('li')
