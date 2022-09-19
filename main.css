@@ -1,0 +1,13 @@
+body {
+    background: lavender;
+    font-family: monospace;
+}
+
+header {
+    background: skyblue;
+    width: 75%;
+}
+
+header img {
+    width: 100%;
+}
