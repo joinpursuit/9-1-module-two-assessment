@@ -57,6 +57,7 @@ function fetchData(URL) {
             reviewsUl.append(reviewListItem);
             reviewListItemStrong = document.createElement("strong");
             reviewListItem.prepend(reviewListItemStrong);
+            reviewTextBox.value = "";
           }
           resJson.forEach((film) => {
             if (selectMovie.value === film.id) {
@@ -64,13 +65,14 @@ function fetchData(URL) {
             }
           }); // closes forEach to find title by id (from dropdown.value)
           // reviewsUl.remove(reviewListItem);
-          reviewTextBox.value = '';
+          
         }); //closes reviewForm submit event listener
         
 
 
         //reset reviews button event listener
         resetReviewsBtn.addEventListener('click', (e) => {
+        
           reviewsUl.innerHTML = '';
           
         })//closes resetReviewsBtn click event listener
