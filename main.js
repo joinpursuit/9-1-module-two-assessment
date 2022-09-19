@@ -7,8 +7,12 @@ const description = document.createElement(`p`)
 const form = document.querySelector(`form`)
 const ul = document.querySelector(`ul`)
 const reset = document.querySelector(`#reset-reviews`)
+const people = document.querySelector(`.people`)
+const button = document.querySelector(`#show-people`)
+const ol = document.querySelector(`ol`)
 
 let isSelected = ``
+let peopleList = []
 
 // To ensure Cypress tests work as expeded, add any code/functions that you would like to run on page load inside this function
 
@@ -22,6 +26,31 @@ function run() {
             const option = document.createElement(`option`)
             option.textContent = `${title}`
             select.append(option)
+
+            // const peopleList = res[i][`people`]
+
+            // for(let num=0; num < peopleList.length; num++){
+            //     const personLi = document.createElement(`li`)
+
+            //     personLi.textContent = peopleList[num]
+            //     ol.append(personLi)
+            // }
+
+            const persons = res[i][`people`]
+
+            for (let num=0; num < res[i][`people`].length; num++){
+                const personLi = document.createElement(`li`)
+
+                persons.forEach(person => {
+                    fetch(`${person}`)
+                    .then(res => res.json())
+                    .then(res => {
+                        personLi.textContent = `${res[num][`name`]}`
+                        ol.append(personLi)
+                    })
+                    .catch(err => console.log(err))
+                })
+            }
         }
 
         select.addEventListener(`change`, (event) => {
@@ -59,8 +88,12 @@ function run() {
         
         reset.addEventListener(`click`, (event) => {
             event.preventDefault()
-
             ul.innerHTML = `<ul></ul>`
+        })
+
+        button.addEventListener(`click`, (event) => {
+            event.preventDefault()
+            ol.classList.toggle(`hidden`)
         })
     })
     .catch(err => console.log(err))
