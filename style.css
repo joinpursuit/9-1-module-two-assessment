@@ -1,0 +1,47 @@
+body{
+    background-color: lavender;
+    font-family: monospace;
+    margin-top: 0;
+}
+
+header{
+    background-color: skyblue;
+    width: 75%;
+    position: flex;
+    /*Might need fix*/
+    margin-bottom: 20px;
+    margin-top: 0;
+    margin-left: 12%;
+    /* change to 12% if not working */
+  
+}
+
+img{
+    width: 250px;
+}
+
+h1{
+    float: right;
+    display:fixed;
+}
+
+main{
+    display: grid; 
+    padding-left: 12%;
+    grid-template-rows: 1;
+    /* this might be 2 */
+    margin: auto;
+}
+
+button{
+    
+}
+
+@media (max-width: 500px) {
+    h1{
+        display:fixed;
+        text-align: right;
+    }
+
+  /* Its squished Deal with this if theres time */
+}
