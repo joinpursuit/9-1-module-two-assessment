@@ -27,29 +27,18 @@ function run() {
             option.textContent = `${title}`
             select.append(option)
 
-            // const peopleList = res[i][`people`]
-
-            // for(let num=0; num < peopleList.length; num++){
-            //     const personLi = document.createElement(`li`)
-
-            //     personLi.textContent = peopleList[num]
-            //     ol.append(personLi)
-            // }
-
             const persons = res[i][`people`]
 
-            for (let num=0; num < res[i][`people`].length; num++){
+            for (let num=0; num < persons.length; num++){
                 const personLi = document.createElement(`li`)
 
-                persons.forEach(person => {
-                    fetch(`${person}`)
-                    .then(res => res.json())
-                    .then(res => {
-                        personLi.textContent = `${res[num][`name`]}`
-                        ol.append(personLi)
-                    })
-                    .catch(err => console.log(err))
+                fetch (`${persons[num]}`)
+                .then (res => res.json())
+                .then (res => {
+                    personLi.textContent = res[`name`]
+                    ol.append(personLi)
                 })
+                .catch (err => console.log(err))
             }
         }
 
