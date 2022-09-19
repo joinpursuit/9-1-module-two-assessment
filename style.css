@@ -3,8 +3,16 @@ body {
     font-family: monospace;
 }
 
-header{
+header {
     width: 75%;
     background-color: skyblue;
+    align-items: center;
 }
 
+img {
+    height: 100px;
+}
+
+h1 {
+    text-align: right;
+}
