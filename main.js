@@ -1,5 +1,3 @@
-//people are array of links -> fetch again -> object -> 'name' key
-
 // url : https://ghibliapi.herokuapp.com/films
 
 // CREATE MAIN ELEMENT VARIABLES, FORM, SELECT, UL, OL
@@ -11,12 +9,12 @@ const resetButton = document.getElementById(`reset-reviews`);
 const peopleButton = document.getElementById(`show-people`);
 
 //CREATE FETCH FUNCTION
-const fetchInfo = (index, plot) => {
+const fetchInfo = (plot=false) => {
   fetch(`https://ghibliapi.herokuapp.com/films`)
     .then((res) => res.json())
     .then((respJson) => {
       respJson.forEach(({ id, title, description, release_date, people }) => {
-        if (!index && !plot) {
+        if (!plot) {
           const option = document.createElement(`option`);
           option.value = id;
           option.innerText = title;
@@ -31,20 +29,6 @@ const fetchInfo = (index, plot) => {
                     `;
           }
         }
-
-        if (index) {
-          if (index === id)
-            people.forEach((p) => {
-              fetch(`${p}`)
-                .then((res2) => res2.json())
-                .then((respJson2) => {
-                  const person = document.createElement(`li`);
-                  person.innerText = respJson2.name;
-                  peopleList.append(person);
-                })
-                .catch((err) => console.log(err));
-            });
-        }
       });
     })
     .catch((error) => console.log(error));
@@ -54,14 +38,17 @@ const fetchInfo = (index, plot) => {
 dropdown.addEventListener(`change`, (e) => {
   peopleList.innerHTML = ``;
   const character = dropdown.value;
-  fetchInfo(false, character);
+  if (dropdown.value !== ``){
+    fetchInfo(character);
+  } 
 });
 
 form.addEventListener(`submit`, (event) => {
   event.preventDefault();
   if (dropdown.value === ``) {
-    window.alert(`Please select a movie first`);
-  } else {
+    window.alert(`Please select a movie first`);  
+  } 
+  else {
     const reviewItem = document.createElement(`li`);
     const movieTitle = document.querySelector(`#display-info h3`).innerText;
     reviewItem.innerHTML = `<strong>${movieTitle}:</strong> ${form.review.value}`;
@@ -79,7 +66,20 @@ peopleButton.addEventListener(`click`, (e2) => {
   e2.preventDefault();
   peopleList.innerHTML = ``;
   const movie = dropdown.value;
-  fetchInfo(movie, false);
+  fetch(`https://ghibliapi.herokuapp.com/people/`)
+  .then(res => res.json())
+  .then(respJson => {
+    respJson.forEach(({name, films}) => {
+        films.forEach(f => {
+            if(f.split(`https://ghibliapi.herokuapp.com/films/`)[1] === movie){
+                const person = document.createElement(`li`);
+                person.innerText = name;
+                peopleList.append(person);
+            }
+        })
+    })
+  })
+  .catch(err => console.log(err))
 });
 
 // To ensure Cypress tests work as expeded, add any code/functions that you would like to run on page load inside this function
