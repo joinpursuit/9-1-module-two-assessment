@@ -40,19 +40,14 @@ function run() {
             }
         })
 
-        const alert = document.createElement(`p`)
-        select.after(alert)
-
         form.addEventListener(`submit`, (event) => {
             event.preventDefault()
 
             if (isSelected === `no`){
-                alert.textContent = `Please select a movie first`
+                window.alert(`Please select a movie first`)
             }
 
             if (isSelected === `yes`){
-                alert.textContent = ``
-
                 const li = document.createElement(`li`)
                 li.innerHTML = 
                 `<p><strong>${movieTitle.textContent}:</strong> ${event.target[0].value}</p>`
