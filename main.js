@@ -17,6 +17,7 @@ const ul = document.querySelector("ul");
 const textInput = document.querySelector(".textInput");
 const reviews = document.querySelector("#reviews");
 const reset = document.querySelector("#reset-reviews");
+const showPeople = document.querySelector("#show-people");
 
 const URL = "https://ghibliapi.herokuapp.com/films";
 let filmData;
@@ -41,7 +42,7 @@ select.addEventListener("change", () => {
 
   const findFilm = filmData.find((film) => film.id === select.value);
 
-  film = findFilm.title;
+  film = findFilm;
 
   const h3 = document.createElement("h3");
   h3.innerText = findFilm.title;
@@ -60,23 +61,60 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
 
   if (select.value === "") {
-    const error = document.createElement("p");
-    error.innerHTML = "Please select a movie first";
-    error.style.color = "red";
-    error.style.fontSize = "14px";
-    form.append(error);
-    select.addEventListener("change", () => {
-      error.innerHTML = "";
-    });
+    alert("Please select a movie first");
+    // const error = document.createElement("p");
+    // error.innerHTML = "Please select a movie first";
+    // error.style.color = "red";
+    // error.style.fontSize = "14px";
+    // form.append(error);
+    // select.addEventListener("change", () => {
+    //   error.innerHTML = "";
   } else {
     const li = document.createElement("li");
-    li.innerHTML = `<strong>${film}: </strong>${textInput.value}`;
+    li.innerHTML = `<strong>${film.title}: </strong>${textInput.value}`;
     ul.append(li);
-    console.log(filmData.title);
+    form.reset();
   }
-  form.reset();
 });
 
 reset.addEventListener("click", () => {
   ul.innerHTML = "";
 });
+
+showPeople.addEventListener("click", () => {
+  const people = "https://ghibliapi.herokuapp.com/people";
+  fetch(people)
+    .then((data) => data.json())
+    .then((data) => {
+      //   console.log(film.people);
+
+      film.people.forEach((film, i) => {
+        for (let p = 0; p < data.length; p++) {
+          if (film.people === data[p].url) {
+            console.log(data[p].url);
+            const list = document.querySelector("ol");
+            const person = document.createElement("li");
+            person.innerText = data[p].name;
+            console.log(person);
+            list.append(person);
+          }
+        }
+      });
+    })
+    .catch((err) => console.log(err));
+});
+// });
+
+//   for (let i = 0; i < film.people; i++) {
+//     for (let p = 0; p < allPeople.length; i++) {
+//       console.log(film.people[i]);
+//       if (film[i].people === allPeople[p].url) {
+//         const list = document.querySelector("ol");
+//         const person = document.createElement("li");
+//         person.innerText = allPeople[p].name;
+//         console.log(person);
+//         list.append(person);
+//       }
+//     }
+//   }
+// })
