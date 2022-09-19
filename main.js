@@ -1,5 +1,7 @@
 const selectMovie = document.querySelector('#titles');
-let displayInfo = document.querySelector("#display-info");
+let displayInfo = document.querySelector('#display-info');
+let reviewsUl = document.querySelector('#reviews-ul');
+
 // To ensure Cypress tests work as expeded, add any code/functions that you would like to run on page load inside this function
 function fetchData(URL) {
     
@@ -17,7 +19,10 @@ function fetchData(URL) {
             console.log(option.value)
           selectMovie.append(option);
           
-          // create an h3 with movie title, a p tag with movie release year, and a p tag with description
+          
+          
+          
+          // Adds change event listener to dropdown, and creates an h3 with movie title, p tag with movie release year, and p tag with film description.
 
            selectMovie.addEventListener("change", (e) => {
             //  e.preventDefault();
@@ -30,32 +35,33 @@ function fetchData(URL) {
                movieDetailsH3.innerText = `${film.title}`;
                movieDetailsReleaseYear.innerText = `${film.release_date}`;
                movieDetailsDescription.innerText = `${film.description}`;
-               
+               displayInfo.innerHTML = ''
                displayInfo.append(
                  movieDetailsH3,
                  movieDetailsReleaseYear,
                  movieDetailsDescription
                );
              }
-           });
-
-
-
-
-            
-        });
+           }); // closes selectMovie change event listener
+          
+          
+          
+          
+          
+          
+        }); // closes forEach
        
       })
       .catch((err) => {
         console.error(err);
-      });
+      }); // closes fetch call block
     
     
 
   
 
     
-}
+} //closes funtion fetchData
 
 
 function run() {
