@@ -2,7 +2,7 @@ const header = document.querySelector("header");
 const form = document.querySelector("form");
 const selectTitles = document.querySelector("#title");
 const display = document.querySelector("#display-info");
-console.log(display)
+console.log(display);
 const reviewInput = document.querySelector("#reviews");
 const details = document.querySelector("#movie-details");
 const ul = document.querySelector("ul");
@@ -10,7 +10,7 @@ const input = document.querySelector("#review");
 console.log(input);
 const revDisplay = document.querySelector("#reviews ul");
 selectInfo = document.querySelector("#select-info");
-const reset = document.querySelector("#reset-reviews")
+const reset = document.querySelector("#reset-reviews");
 // const form = document.querySelector("form")
 // const form = document.querySelector("form")
 
@@ -26,7 +26,6 @@ function run() {
       console.log(apiResult);
 
       apiResult.forEach((film) => {
-
         let selectOpt = document.createElement("option");
         selectOpt.innerHTML = film.title;
         //! add Id value in the dom
@@ -37,17 +36,16 @@ function run() {
     })
     .catch((error) => console.log(error));
   //* Movie Description
-let title;
+  let title;
   selectTitles.addEventListener("change", () => {
     //! remember to clear secstion after seleting another movie
-    display.innerHTML=''
+    display.innerHTML = "";
     fetch(`https://ghibliapi.herokuapp.com/films/${selectTitles.value}`)
       .then((res) => res.json())
       .then((resJson) => {
-       
-        title=resJson.title
+        title = resJson.title;
         //! fix, find method not working
-        // const desc = apiResult.find((info) => info.title === selectTitles.value); 
+        // const desc = apiResult.find((info) => info.title === selectTitles.value);
         const titleH3 = document.createElement("h3");
         titleH3.innerHTML = `${resJson.title}`;
 
@@ -58,7 +56,7 @@ let title;
         description.innerHTML = resJson.description;
         console.log(description);
 
-       display.append(titleH3, year, description);
+        display.append(titleH3, year, description);
       })
       .catch((err) => console.log(err));
   });
@@ -66,24 +64,24 @@ let title;
   //* Add Reviews
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-   
+
     if (!selectTitles.value) {
-      // const errP = Document.createElement("p")
       alert("Please select a movie first");
-        //  ul.append(revDisplay);
-    }
-     else {
+    } else {
       const reviews = document.createElement("li");
       ul.append(reviews);
       reviews.innerHTML = `<strong>${title}:</strong> ${input.value}`;
+      form.reset();
     }
-    form.reset();
   });
 
   //* Reset button
-reset.addEventListener('click', ()=>{
-revDisplay.innerHTML=''
-})
+  reset.addEventListener("click", () => {
+    revDisplay.innerHTML = "";
+  });
+
+  //* Generate an ordered List of people's name
+  // const orderedl
 }
 
 // This function will "pause" the functionality expected on load long enough to allow Cypress to fully load
