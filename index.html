@@ -10,32 +10,39 @@
 </head>
 <body>
     <header>
-
         <img src="./images/ghibli-logo.png" alt="">
         <h1>Ghibli Review App</h1>
     </header>
 
     <main>
-        <section>
-            <h2>Select a movie</h2>
-            <select name="" id="">
-                <option value=""></option>
+        <section class = "dropDownSection">
+            <h2  class = "dropDownHeading">Select a movie</h2>
+            <select class = "dropDownList" name="" id="titles">
+                <option class="dropDownOption" value=""></option>
             </select>
         </section>
 
-        <section>
-            <h2>Add a review</h2>
-            <form action="">
-                <label for="review">Your review</label>
+        <section class = "reviewSection">
+            <h2 class ="reviewHeader">Add a review</h2>
+            <form  class = "reviewForm" action="">
+                <label  class ="reviewLabel" for="review">Your review</label>
                 <input id ='review' type="text">
                 <input type="submit">
             </form>
         </section>
 
-        <!-- *** Will be populated with 1 h3 and 2 p tags when movie is selected ***-->
         <section>
             <h2>Movie details</h2>
+                    <!-- *** This div will be populated with 1 h3 and 2 p tags when movie is selected ***-->
             <div id="display-info"></div>
+        </section>
+
+        <section class="peopleSection">
+            <h2 class="peopleHeader">People</h2>
+            <!--  *** This list will be populated with line items as people names are added ***-->
+            <ol class=""peopleListGroup></ol>
+            <button id="show-people">Show People</button>
+
         </section>
 
         <section>
