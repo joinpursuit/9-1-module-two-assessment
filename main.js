@@ -1,5 +1,6 @@
 const url = "https://ghibliapi.herokuapp.com/films"
 const select = document.querySelector('select');
+const form = document.querySelector('form')
 let recallData;
 
 
@@ -40,6 +41,21 @@ function run() {
         p2.innerHTML = `${dataFind.description}`
         info.append(h3, p, p2)
     });
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = `${select.value}`;
+        const review = document.querySelector('#review')
+        const reviewVal = review.value
+
+        const list = document.createElement('li')
+        list.innerHTML = `<strong>${name}: </strong>${reviewVal}`;
+        const ul = document.querySelector('ul') 
+        ul.append(list);
+
+
+        form.reset();
+    })
 }
 
 // This function will "pause" the functionality expected on load long enough to allow Cypress to fully load
