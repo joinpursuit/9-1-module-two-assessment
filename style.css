@@ -1,0 +1,10 @@
+body {
+  font-family: monospace;
+  margin: 0%;
+  padding: 0%;
+}
+
+header {
+  width: 75%;
+  background-color: skyblue;
+}
