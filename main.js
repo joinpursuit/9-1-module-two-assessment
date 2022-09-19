@@ -18,6 +18,7 @@ const fetchInfo = () => {
             const titleClass = title.split(` `).join(``)
             const option = document.createElement(`option`)
             option.value = id
+            // option.setAttribute(`name`, `${title}`)
             option.innerText = title
             dropdown.append(option)
 
@@ -53,6 +54,7 @@ const fetchInfo = () => {
 
 // ADD EVENT LISTENERS 
 dropdown.addEventListener(`change`, (e) => {
+
     if(document.querySelector(`.show`)){
         document.querySelector(`.show`).classList.toggle("hiddenDescription");
         document.querySelector(`.show`).classList.remove("show");
@@ -60,6 +62,16 @@ dropdown.addEventListener(`change`, (e) => {
 
     document.getElementById(`${dropdown.value}`).classList.toggle(`hiddenDescription`)
     document.getElementById(`${dropdown.value}`).classList.add(`show`)
+})
+
+form.addEventListener(`submit`, (event) => {
+    event.preventDefault()
+    console.log(dropdown.value,form.review.value)
+    const reviewItem = document.createElement(`li`)
+    reviewItem.innerHTML = `
+    <strong>${document.querySelector(`#${dropdown.value} h3`).innerText}</strong>: ${form.review.value}`
+    reviewList.append(reviewItem)
+    form.reset()
 })
 
 // To ensure Cypress tests work as expeded, add any code/functions that you would like to run on page load inside this function
