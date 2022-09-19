@@ -8,9 +8,10 @@ const form = document.querySelector(`form`)
 const peopleList = document.querySelector(`ol`)
 const reviewList = document.querySelector(`ul`)
 const resetButton = document.getElementById(`reset-reviews`)
+const peopleButton = document.getElementById(`show-people`)
 
 //CREATE FETCH FUNCTION
-const fetchInfo = () => {
+const fetchInfo = (index) => {
     fetch(`https://ghibliapi.herokuapp.com/films`)
     .then(res => res.json())
     .then(respJson => {
@@ -33,19 +34,20 @@ const fetchInfo = () => {
             summary.id = id
             document.getElementById(`display-info`).append(summary)
 
-            people.forEach(p => {
-                fetch(`${p}`)
-                .then(res2 => res2.json())
-                .then(respJson2 => {
-                    const person = document.createElement(`li`)
-                    person.classList.add(`${titleClass}`)
-                    person.classList.add(`hiddenPerson`)
-                    person.innerText = respJson2.name
-                    peopleList.append(person)
+            if(index){
+                if(index === id)
+                people.forEach(p => {
+                    fetch(`${p}`)
+                    .then(res2 => res2.json())
+                    .then(respJson2 => {
+                        const person = document.createElement(`li`)
+                        person.innerText = respJson2.name
+                        peopleList.append(person)
+                    })
+                    .catch(err => console.log(err))
+                    
                 })
-                .catch(err => console.log(err))
-                
-            })
+            }
 
         })
     })
@@ -84,6 +86,14 @@ form.addEventListener(`submit`, (event) => {
 resetButton.addEventListener(`click`, (events) => {
     events.preventDefault()
     reviewList.innerHTML = ``
+})
+
+peopleButton.addEventListener(`click`, (e2) => {
+    e2.preventDefault()
+    peopleList.innerHTML =``
+    const movie = dropdown.value
+    fetchInfo(movie)
+   
 })
 
 
