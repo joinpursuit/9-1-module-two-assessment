@@ -1,23 +1,32 @@
-
+const selectMovie = document.querySelector('#titles');
 // To ensure Cypress tests work as expeded, add any code/functions that you would like to run on page load inside this function
-function fetchData(URL){
+function fetchData(URL) {
+    
+    //FETCH
     fetch(URL)
       .then((res) => res.json())
       .then((resJson) => {
         console.log(resJson);
+
+        //Create an option in dropdown menu for each element -- value = film id, text = film title
+        resJson.forEach((film) => {
+          const option = document.createElement("option");
+          option.value = `${film.id}`;
+            option.innerText = `${film.title}`;
+            console.log(option.value)
+            selectMovie.append(option);
+
+            
+        });
       })
       .catch((err) => {
         console.error(err);
       });
     
     
-    
-    
-    
-    
-    
-    
-    
+
+  
+
     
 }
 
