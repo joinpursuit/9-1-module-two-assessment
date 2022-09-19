@@ -79,7 +79,7 @@ peopleButton.addEventListener(`click`, (e2) => {
   e2.preventDefault();
   peopleList.innerHTML = ``;
   const movie = dropdown.value;
-  fetchInfo(movie);
+  fetchInfo(movie, false);
 });
 
 // To ensure Cypress tests work as expeded, add any code/functions that you would like to run on page load inside this function
