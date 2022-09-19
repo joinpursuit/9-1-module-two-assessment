@@ -1,6 +1,7 @@
 const url = "https://ghibliapi.herokuapp.com/films"
 const select = document.querySelector('select');
-const form = document.querySelector('form')
+const form = document.querySelector('form');
+const body = document.querySelector('body')
 let recallData;
 
 
@@ -17,7 +18,7 @@ function run() {
         for(let i = 0; i < data.length; i++){
             const title = data[i].title;
             // console.log(title)
-            const id = data[i].id
+            // const id = data[i].id
             const option = document.createElement('option');
             option.textContent = title;
             option.value = title;
@@ -54,9 +55,18 @@ function run() {
         ul.append(list);
 
 
+
         form.reset();
+        
+        const button = document.querySelector('#reset-reviews')
+        button.addEventListener('click', () => {
+        ul.innerHTML = ''
+        });
+        
     })
 }
+
+
 
 // This function will "pause" the functionality expected on load long enough to allow Cypress to fully load
 // So that testing can work as expected for now
