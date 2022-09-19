@@ -70,12 +70,14 @@ function run() {
       selectTitles.addEventListener("change", () => {
         // errP.innerHTML=``
         header.append(errP);
-      });
-    } else {
+      });   
+         ul.append(revDisplay);
+    }
+     else {
       const reviews = document.createElement("li");
       ul.append(reviews);
       reviews.innerHTML = `<strong>${selectTitles.value}:</strong> ${input}`;
-      ul.append(revDisplay);
+
     }
   });
 
