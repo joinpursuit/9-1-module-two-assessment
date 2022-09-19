@@ -51,6 +51,16 @@ const fetchInfo = () => {
     
 }
 
+// ADD EVENT LISTENERS 
+dropdown.addEventListener(`change`, (e) => {
+    if(document.querySelector(`.show`)){
+        document.querySelector(`.show`).classList.toggle("hiddenDescription");
+        document.querySelector(`.show`).classList.remove("show");
+    }
+
+    document.getElementById(`${dropdown.value}`).classList.toggle(`hiddenDescription`)
+    document.getElementById(`${dropdown.value}`).classList.add(`show`)
+})
 
 // To ensure Cypress tests work as expeded, add any code/functions that you would like to run on page load inside this function
 
