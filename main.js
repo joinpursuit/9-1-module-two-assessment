@@ -1,14 +1,14 @@
 let url = `https://ghibliapi.herokuapp.com/films`;
-const select = document.querySelector('select');
+const select = document.querySelector('#title');
 const info = document.querySelector('#display-info');
 const form = document.querySelector(`form`);
 const review = document.querySelector('#review');
 const ul = document.querySelector('ul');
 const button = document.querySelector('#reset-reviews');
+const people = document.querySelector(`#show-people`);
 
 let fetchCall;
 // To ensure Cypress tests work as expected, add any code/functions that you would like to run on page load inside this function
-
 function run() {
   // Add code you want to run on page load here
 
@@ -31,15 +31,18 @@ function run() {
     })
     .catch((err) => console.log(err));
 
-  //! initialize movieTitle variable to retain the value of the find method
-  let movieTitle;
+  //! initialize movie variable to retain the value of the find method
+  let movie;
 
   //! select add event listener
   select.addEventListener('change', (e) => {
     e.preventDefault();
     const callBack = fetchCall.find((e) => e.id === `${select.value}`);
     // console.log(callBack);
-    movieTitle = callBack;
+
+    //! grab the value of callback.title and store it in movie
+    movie = `${callBack.title}`;
+    // console.log(movie);
     info.innerHTML = '';
     const h3 = document.createElement('h3');
     const p1 = document.createElement('p');
@@ -54,26 +57,48 @@ function run() {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const name = `${movieTitle.title}`;
-    const myReview = `${review.value}`;
-    // console.log(name);
-    // console.log(myReview);
-    if (!name) {
-      error();
-    } else {
-      const li = document.createElement('li');
-      li.innerHTML = `<strong><b>${name}:</strong></b> ${myReview}`;
-      ul.append(li);
-      form.reset();
-    }
+    console.log(!`${select.value}`);
     //! Select a movie error message
     function error() {
       alert(`Please select a movie first`);
+    }
+
+    if (!`${select.value}`) {
+      error();
+    } else {
+      const name = `${movie}`;
+      const myReview = `${review.value}`;
+      //   console.log(name);
+      //   console.log(myReview);
+      const list = document.createElement('li');
+      ul.append(list);
+      list.innerHTML = `<strong><b>${name}:</b></strong> ${myReview}`;
+      form.reset();
     }
   });
 
   button.addEventListener('click', () => {
     ul.innerHTML = '';
+  });
+
+  //! people event listener
+  people.addEventListener('click', (e) => {
+    e.preventDefault();
+    const second = fetchCall.find((e) => e.id === `${select.value}`);
+    // console.log(second);
+
+    people.innerHTML = '';
+
+    const characters = second.people;
+    // const characters = second.people[0];
+    console.log(characters);
+
+    for (let i = 0; i < characters.length; i++) {
+      const orderedList = document.createElement('ol');
+      orderedList.innerHTML = characters[i].name.value;
+      console.log(orderedList);
+      people.append(orderedList);
+    }
   });
 }
 
