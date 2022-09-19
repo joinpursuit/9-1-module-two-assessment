@@ -1,0 +1,39 @@
+body{
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  background-color:rgb(230, 230, 250);
+  font-family: monospace;
+  min-height: 100vh;
+  text-align: center;
+  align-items: center;
+  justify-content: center
+  ;
+}
+
+.nav-bar{
+  float: none;
+  right: 50%;
+  left: 50%;
+  transform: translate(16%);
+  height: 150px;
+  display: flex;
+  width: 75%;
+  background-color: skyblue;
+  margin: 0px;
+  padding: 0px; 
+}
+
+.nav-bar img{
+  margin: 1%;
+  padding: 0px;
+  display: flex;
+  width: 300px;
+}
+
+.nav-bar h1 {
+  margin-left: 450px;
+  display: flex;
+  align-items: right;
+  color: rgb(0, 0, 0);
+}
