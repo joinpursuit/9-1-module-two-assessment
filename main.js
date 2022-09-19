@@ -82,9 +82,12 @@ form.addEventListener("submit", (event) => {
 
     function addList(reviews, title){
         const li = document.createElement("li")
+        const strong = document.createElement("strong")
         
         if(title){
-            li.textContent +=  `${title}: ${reviews}`
+            strong.textContent = `${title}: `
+            li.textContent =reviews
+            li.prepend(strong)
         }
         return li
     }
