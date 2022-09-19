@@ -23,9 +23,10 @@ function run() {
         dropDownMenu.append(newOption)
     }
 
-    const filmYear = document.querySelector(".filmYear")
-    const filmDescription = document.querySelector(".filmDescription")
-    const movieDetails = document.querySelector(".details")
+    const filmTitle = document.querySelector("#movieTitle")
+    const filmYear = document.querySelector("#filmYear")
+    const filmDescription = document.querySelector("#filmDescription")
+    const movieDetails = document.querySelector("#display-info")
 
     dropDownMenu.addEventListener("change", (event) => {
         console.log("change") // Test to check change event listener.
@@ -34,11 +35,12 @@ function run() {
 
         for (let i = 0; i < data.length; i++) {
             if (data[i].title === event.target.value) {
+                filmTitle.innerHTML = `${data[i].title}`
                 filmYear.innerHTML = `${data[i].release_date}`
                 filmDescription.innerHTML = `${data[i].description}`
             }
         }
-        movieDetails.append(filmYear, filmDescription)
+        movieDetails.append(filmTitle, filmYear, filmDescription)
     })
  })
 }
