@@ -7,3 +7,12 @@ header{
     width: 75%;
     background-color: skyblue;
 }
+img{
+    height: 30px;
+    width: 20vw;
+}
+
+h1{
+    display: inline-block;
+    margin-left: 20vw ;
+}
