@@ -12,6 +12,7 @@
 <!--HEADER-->
     <header class="header">
         <h1 id="header-h1">Ghibli Review App</h1>
+        <img src="./images/ghibli-logo.png" alt="Ghibli logo">
     </header>
 
     <!--MAIN-->
@@ -20,12 +21,15 @@
         <!--Select Movie-->
         <section>
             <h2>Select a movie</h2>
-            <select name="titles" id="titles"></select>
+            <select name="" id="titles">
+                <option value="">Select a Film</option>
+            </select>
+           
             <!--option (blank, no value), remaining options will be populated with the movie titles from the API-->
         </section>
 
         <section>
-            <h2>Add a Review</h2>
+            <h2>Add a review</h2>
             <form>
                 <label for="review">Your Review</label>
                 <input id="review" type="text">
@@ -36,7 +40,7 @@
 
         <!--Movie Details-->
         <section>
-            <h2>Movie Details</h2>
+            <h2>Movie details</h2>
             <div id="display-info">
                 <!-- starts empty, will be populated with h3 and two p elements, when a movie is selected-->
             </div>
@@ -53,7 +57,7 @@
 
             <!--Reviews-->
         <section id="reviews">
-            <h2>Add a Review</h2>
+            <h2>Reviews</h2>
             <ul>
                 <!-- starts empty, will be populated with li as reviews are added-->
             </ul>

@@ -1,16 +1,11 @@
 body{
     background-color: lavender;
+    font-family: monospace;
 }
 
 .header{
-    background-image: url(./images/ghibli-logo.png);
     background-color: skyblue;
     width: 75vw;
-    height: 150px;
-    font-family: monospace ;
-}
-
-.main{
-    font-family: monospace;
+    height: 150px
 }
 
