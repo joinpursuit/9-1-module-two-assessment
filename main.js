@@ -5,6 +5,7 @@ const displayInfo = document.querySelector('#display-info')
 const submitButton = document.getElementById('submit')
 const reviewList = document.querySelector('ul')
 const input = document.getElementById('review')
+const resetReviews = document.getElementById('reset-reviews')
 
 // To ensure Cypress tests work as expeded, add any code/functions that you would like to run on page load inside this function
 
@@ -46,6 +47,14 @@ document.getElementById('titles').addEventListener('change', function() {
 
                 input.value = ``
             })
+
+            resetReviews.addEventListener('click', (event) => {
+                event.preventDefault()
+
+                reviewList.textContent = ''
+
+            })
+
         })
         .catch((error) => {
             console.log(error)
