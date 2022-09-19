@@ -1,6 +1,6 @@
 
-
-
+const info = document.querySelector("#display-info")
+const movie = document.querySelector("#movie")
 
 
 
@@ -14,20 +14,19 @@ function run() {
        
        
        let i  = 0
-       res.forEach(element => {
-           
+       res.forEach(element =>
+         {
            const opt = document.createElement("option")
            opt.setAttribute("value",`${element.title}`)
            opt.innerText=`${element.title}`
            
    
-           movies.append(opt)
+             movie.appendChild(opt)
    
-          
            i++ 
        });
    
-       window.localStorage.setItem('person',JSON.stringify(res))
+       window.localStorage.setItem('all',JSON.stringify(res))
        
    })
     .catch((error) => console.log(error))
@@ -38,4 +37,32 @@ function run() {
 // So that testing can work as expected for now
 // A non-hacky solution is being researched
 
-setTimeout(run, 1000);
+setTimeout(run, 1500);
+
+
+function addMovie(){
+        
+    
+    
+for (let w = 0;w<JSON.parse(window.localStorage.getItem("all")).length;w++){
+
+    if(movie["value"] === JSON.parse(window.localStorage.getItem("all"))[w]["title"]){
+        // console.log(movie.innerText)
+    
+        const title = document.createElement("h3")
+        title.innerText = JSON.parse(window.localStorage.getItem("all"))[w]["title"]
+        
+        const year = document.createElement("p")
+        year.innerText = JSON.parse(window.localStorage.getItem("all"))[w]["release_date"]
+
+        const desc = document.createElement("p")
+        desc.innerText = JSON.parse(window.localStorage.getItem("all"))[w]["description"]
+        
+        info.innerHTML = ""
+
+        info.append(title,year,desc)
+}
+}
+
+        
+    }
