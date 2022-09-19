@@ -7,6 +7,7 @@ const dropdown = document.getElementById(`titles`)
 const form = document.querySelector(`form`)
 const peopleList = document.querySelector(`ol`)
 const reviewList = document.querySelector(`ul`)
+const resetButton = document.getElementById(`reset-reviews`)
 
 //CREATE FETCH FUNCTION
 const fetchInfo = () => {
@@ -66,13 +67,26 @@ dropdown.addEventListener(`change`, (e) => {
 
 form.addEventListener(`submit`, (event) => {
     event.preventDefault()
-    console.log(dropdown.value,form.review.value)
-    const reviewItem = document.createElement(`li`)
-    reviewItem.innerHTML = `
-    <strong>${document.querySelector(`#${dropdown.value} h3`).innerText}</strong>: ${form.review.value}`
-    reviewList.append(reviewItem)
+    // console.log(dropdown.value,form.review.value)
+    if(dropdown.value === ``){
+        window.alert(`Please select a movie first`)
+    }
+    else{
+        const reviewItem = document.createElement(`li`)
+        reviewItem.innerHTML = `
+        <strong>${document.getElementById(`${dropdown.value}`).innerText.split(`\n`)[0]}</strong>: ${form.review.value}`
+        reviewList.append(reviewItem)
+    }
+   
     form.reset()
 })
+
+resetButton.addEventListener(`click`, (events) => {
+    events.preventDefault()
+    reviewList.innerHTML = ``
+})
+
+
 
 // To ensure Cypress tests work as expeded, add any code/functions that you would like to run on page load inside this function
 
