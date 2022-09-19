@@ -1,0 +1,21 @@
+* {
+    font-family: monospace;
+}
+
+body {
+    background-color: lavender;
+    
+}
+
+header {
+    height: 200px;
+    width: 75%;
+    background-color: skyblue;
+    text-align:end;
+    
+}
+
+header img {
+    height: 200px;
+}
+
