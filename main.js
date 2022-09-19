@@ -53,24 +53,20 @@ function fetchData(URL) {
             alert('Please select a movie first');
           } else {
             reviewListItem = document.createElement("li");
-            reviewListItem.innerText = reviewTextBox.value;
-            reviewListItemStrong = document.createElement("strong");
-            reviewsUl.append(reviewListItemStrong);
+            reviewListItem.innerText = `: ${reviewTextBox.value}`;
             reviewsUl.append(reviewListItem);
+            reviewListItemStrong = document.createElement("strong");
+            reviewListItem.prepend(reviewListItemStrong);
           }
-
-          
-
-
           resJson.forEach((film) => {
             if (selectMovie.value === film.id) {
-              reviewListItemStrong.innerText = film.title;
+              reviewListItemStrong.innerText = `${film.title}.`;
             }
           }); // closes forEach to find title by id (from dropdown.value)
           // reviewsUl.remove(reviewListItem);
           reviewTextBox.value = '';
         }); //closes reviewForm submit event listener
-
+        
 
 
         //reset reviews button event listener
