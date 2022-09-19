@@ -6,7 +6,6 @@ let recallData;
 
 
 
-
 // To ensure Cypress tests work as expeded, add any code/functions that you would like to run on page load inside this function
 
 function run() {
@@ -18,7 +17,7 @@ function run() {
         for(let i = 0; i < data.length; i++){
             const title = data[i].title;
             // console.log(title)
-            // const id = data[i].id
+            const id = data[i].id
             const option = document.createElement('option');
             option.textContent = title;
             option.value = title;
@@ -54,15 +53,13 @@ function run() {
         const ul = document.querySelector('ul') 
         ul.append(list);
 
-
-
-        form.reset();
         
+        form.reset();
+
         const button = document.querySelector('#reset-reviews')
         button.addEventListener('click', () => {
         ul.innerHTML = ''
         });
-        
     })
 }
 
