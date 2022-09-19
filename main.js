@@ -17,7 +17,6 @@ const fetchInfo = (index, plot) => {
     .then((respJson) => {
       respJson.forEach(({ id, title, description, release_date, people }) => {
         if (!index && !plot) {
-          const titleClass = title.split(` `).join(``);
           const option = document.createElement(`option`);
           option.value = id;
           option.innerText = title;
@@ -65,7 +64,7 @@ form.addEventListener(`submit`, (event) => {
   } else {
     const reviewItem = document.createElement(`li`);
     const movieTitle = document.querySelector(`#display-info h3`).innerText;
-    reviewItem.innerHTML = `<strong>${movieTitle}</strong>: ${form.review.value}`;
+    reviewItem.innerHTML = `<strong>${movieTitle}:</strong> ${form.review.value}`;
     reviewList.append(reviewItem);
     form.reset();
   }
