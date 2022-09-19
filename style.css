@@ -1,0 +1,27 @@
+body {
+  background-color: lavender;
+  font-family: monospace;
+}
+
+header {
+  background-color: skyblue;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+}
+
+header,
+main {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+h1 {
+    grid-column: 3/4;
+    margin: 0;
+}
