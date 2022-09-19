@@ -10,3 +10,12 @@ header{
 img{
     height: 250px
 }
+
+.error{
+    font-size: 13px;
+    color: red;
+}
+
+.hidden{
+    display: none;
+}

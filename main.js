@@ -21,6 +21,8 @@ const review = document.querySelector("#review")
 const form = document.querySelector("form")
 const reset = document.querySelector("#reset-reviews")
 
+const error = document.querySelector(".error")
+
 fetch(url)
 .then((res) => res.json())
 .then((resJson) => {
@@ -63,8 +65,12 @@ section.addEventListener("change", () => {
 
 form.addEventListener("submit", (event) => {
     event.preventDefault()
-   
-    
+   if(section.value === ""){
+    error.classList.remove("hidden")
+    alert(`Please select a movie first`)
+   }
+   else{
+    error.classList.add("hidden")
     fetch(`${url}/${section.value}`)
     .then((res) => res.json())
     .then((resJson) => {
@@ -73,16 +79,17 @@ form.addEventListener("submit", (event) => {
         const reviews = event.target.review.value
         
         generateList(reviews, title)
-            
-            form.reset()
-        })
-        .catch((error) => console.log(error))
         
+        form.reset()
     })
+    .catch((error) => console.log(error))
+    
+}
+})
 
-    function addList(reviews, title){
-        const li = document.createElement("li")
-        const strong = document.createElement("strong")
+function addList(reviews, title){
+    const li = document.createElement("li")
+    const strong = document.createElement("strong")
         
         if(title){
             strong.textContent = `${title}: `
