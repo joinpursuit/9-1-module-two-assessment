@@ -3,6 +3,7 @@ let displayInfo = document.querySelector('#display-info');
 let reviewsUl = document.querySelector('#reviews-ul');
 addReviewForm = document.querySelector('#add-review-form');
 reviewTextBox = document.querySelector('#review');
+const resetReviewsBtn = document.querySelector("#reset-reviews");
 
 // To ensure Cypress tests work as expeded, add any code/functions that you would like to run on page load inside this function
 function fetchData(URL) {
@@ -14,12 +15,12 @@ function fetchData(URL) {
         console.log(resJson);
 
         //Create an option in dropdown menu for each element -- value = film id, text = film title
-        resJson.forEach((film) => {
+        resJson.forEach(film => {
           const option = document.createElement("option");
           option.value = `${film.id}`;
           option.innerText = `${film.title}`;
-          console.log(option.value);
           selectMovie.append(option);
+          
 
           // Adds change event listener to dropdown, and creates an h3 with movie title, p tag with movie release year, and p tag with film description.
 
@@ -47,13 +48,37 @@ function fetchData(URL) {
 
         addReviewForm.addEventListener("submit", (e) => {
           e.preventDefault();
-          reviewListItem = document.createElement("li");
-          reviewListItem.innerText = reviewTextBox.value;
-          reviewsUl.append(reviewListItem);
-          reviewListItemStrong.innerText = selectMovie.value;
-          reviewsUl.prepend(reviewListItemStrong);
+
+          if (selectMovie.value === '') {
+            alert('Please select a movie first');
+          } else {
+            reviewListItem = document.createElement("li");
+            reviewListItem.innerText = reviewTextBox.value;
+            reviewListItemStrong = document.createElement("strong");
+            reviewsUl.append(reviewListItemStrong);
+            reviewsUl.append(reviewListItem);
+          }
+
+          
+
+
+          resJson.forEach((film) => {
+            if (selectMovie.value === film.id) {
+              reviewListItemStrong.innerText = film.title;
+            }
+          }); // closes forEach to find title by id (from dropdown.value)
+          // reviewsUl.remove(reviewListItem);
           reviewTextBox.value = '';
         }); //closes reviewForm submit event listener
+
+
+
+        //reset reviews button event listener
+        resetReviewsBtn.addEventListener('click', (e) => {
+          reviewsUl.innerHTML = '';
+          
+        })//closes resetReviewsBtn click event listener
+
 
 
 
