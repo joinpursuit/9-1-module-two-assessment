@@ -64,29 +64,31 @@ function run() {
 
     //! Select a movie error message
 
-    function movie() {
+    function movieError() {
       alert(`Please select a Movie`);
     }
 
-    function error() {
+    function reviewError() {
       alert(`review field cannot be empty`);
     }
 
     if (!myReview) {
-      review.addEventListener('input', (e) => {
-        e.preventDefault();
-        error();
-      });
+      //   e.preventDefault();
+      reviewError();
+      //   ul.innerHTML = '';
+    } else if (myReview) {
+      form.reset();
     }
     if (!name) {
-      select.addEventListener('input', () => {
-        movie();
-      });
-      return;
+      //   e.preventDefault();
+      movieError();
+      //   ul.innerHTML = '';
+    } else if (name) {
+      e.preventDefault();
+      form.reset();
     }
-
-    form.reset();
   });
+
   button.addEventListener('click', () => {
     ul.innerHTML = '';
   });
