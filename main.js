@@ -2,6 +2,9 @@ const BASE_URL = 'https://ghibliapi.herokuapp.com/films'
 const selectMenu = document.querySelector('select')
 const movieOption = document.querySelector('option')
 const displayInfo = document.querySelector('#display-info')
+const submitButton = document.getElementById('submit')
+const reviewList = document.querySelector('ul')
+const input = document.getElementById('review')
 
 // To ensure Cypress tests work as expeded, add any code/functions that you would like to run on page load inside this function
 
@@ -32,11 +35,23 @@ document.getElementById('titles').addEventListener('change', function() {
             <h3>${data.title}</h3>\n
             <p>${data.release_date}</p>\n
             <p>${data.description}</p>`
+
+            submitButton.addEventListener('click', (event) => {
+                event.preventDefault()
+            
+                const reviewListItem = document.createElement('li')
+                reviewListItem.innerHTML = `<strong>${data.title}:</strong> ${input.value}`
+                reviewList.append(reviewListItem)
+                // console.log(input.value)
+
+                input.value = ``
+            })
         })
         .catch((error) => {
             console.log(error)
         })
-  });
+})
+
 
 
 
