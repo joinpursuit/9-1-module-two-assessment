@@ -1,6 +1,8 @@
 const selectMovie = document.querySelector('#titles');
 let displayInfo = document.querySelector('#display-info');
 let reviewsUl = document.querySelector('#reviews-ul');
+addReviewForm = document.querySelector('#add-review-form');
+reviewTextBox = document.querySelector('#review');
 
 // To ensure Cypress tests work as expeded, add any code/functions that you would like to run on page load inside this function
 function fetchData(URL) {
@@ -15,42 +17,46 @@ function fetchData(URL) {
         resJson.forEach((film) => {
           const option = document.createElement("option");
           option.value = `${film.id}`;
-            option.innerText = `${film.title}`;
-            console.log(option.value)
+          option.innerText = `${film.title}`;
+          console.log(option.value);
           selectMovie.append(option);
-          
-          
-          
-          
+
           // Adds change event listener to dropdown, and creates an h3 with movie title, p tag with movie release year, and p tag with film description.
 
-           selectMovie.addEventListener("change", (e) => {
+          selectMovie.addEventListener("change", (e) => {
             //  e.preventDefault();
-             console.log('hey')
-             
-             let movieDetailsH3 = document.createElement("h3");
-             let movieDetailsReleaseYear = document.createElement("p");
-             let movieDetailsDescription = document.createElement("p");
-             if (selectMovie.value === film.id) {
-               movieDetailsH3.innerText = `${film.title}`;
-               movieDetailsReleaseYear.innerText = `${film.release_date}`;
-               movieDetailsDescription.innerText = `${film.description}`;
-               displayInfo.innerHTML = ''
-               displayInfo.append(
-                 movieDetailsH3,
-                 movieDetailsReleaseYear,
-                 movieDetailsDescription
-               );
-             }
-           }); // closes selectMovie change event listener
-          
-          
-          
-          
-          
+
+            let movieDetailsH3 = document.createElement("h3");
+            let movieDetailsReleaseYear = document.createElement("p");
+            let movieDetailsDescription = document.createElement("p");
+            if (selectMovie.value === film.id) {
+              movieDetailsH3.innerText = `${film.title}`;
+              movieDetailsReleaseYear.innerText = `${film.release_date}`;
+              movieDetailsDescription.innerText = `${film.description}`;
+              displayInfo.innerHTML = "";
+              displayInfo.append(
+                movieDetailsH3,
+                movieDetailsReleaseYear,
+                movieDetailsDescription
+              );
+            } // closes movie details IF
+          }); // closes selectMovie change event listener
+
           
         }); // closes forEach
-       
+
+        addReviewForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          reviewListItem = document.createElement("li");
+          reviewListItem.innerText = reviewTextBox.value;
+          reviewsUl.append(reviewListItem);
+          reviewListItemStrong.innerText = selectMovie.value;
+          reviewsUl.prepend(reviewListItemStrong);
+          reviewTextBox.value = '';
+        }); //closes reviewForm submit event listener
+
+
+
       })
       .catch((err) => {
         console.error(err);
