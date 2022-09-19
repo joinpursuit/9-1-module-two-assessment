@@ -1,3 +1,4 @@
+//Declaring constant variables
 const BASE_URL = `https://ghibliapi.herokuapp.com`
 const select = document.querySelector(`#titles`)
 const details = document.querySelector(`#display-info`)
@@ -11,16 +12,18 @@ const people = document.querySelector(`.people`)
 const button = document.querySelector(`#show-people`)
 const ol = document.querySelector(`ol`)
 
+//Declaring variables that an be re-assigned values
 let isSelected = ``
-let peopleList = []
 
 // To ensure Cypress tests work as expeded, add any code/functions that you would like to run on page load inside this function
 
-
 function run() {
+    //Fetch API data for films
     fetch (`${BASE_URL}/films`)
     .then(res => res.json())
     .then(res => {
+
+        //Adding API data to text content in HTML elements
         for (let i=0; i < res.length; i++){
             const title = res[i][`title`]
             const option = document.createElement(`option`)
@@ -29,9 +32,11 @@ function run() {
 
             const persons = res[i][`people`]
 
+            //For loop to add API data to People section
             for (let num=0; num < persons.length; num++){
                 const personLi = document.createElement(`li`)
 
+                //Fetching API data for people and adding to ol element
                 fetch (`${persons[num]}`)
                 .then (res => res.json())
                 .then (res => {
@@ -42,6 +47,7 @@ function run() {
             }
         }
 
+        //Event listener for select element
         select.addEventListener(`change`, (event) => {
             event.preventDefault()
 
@@ -58,13 +64,16 @@ function run() {
             }
         })
 
+        //Event listener for adding a review
         form.addEventListener(`submit`, (event) => {
             event.preventDefault()
 
+            //Creating alert message if no movie selected
             if (isSelected === `no`){
                 window.alert(`Please select a movie first`)
             }
 
+            //Adds reviews to ul element
             if (isSelected === `yes`){
                 const li = document.createElement(`li`)
                 li.innerHTML = 
@@ -75,15 +84,17 @@ function run() {
             }
         })
         
+        //Adding event listener to reset reviews list
         reset.addEventListener(`click`, (event) => {
             event.preventDefault()
             ul.innerHTML = `<ul></ul>`
         })
 
+        //Adding event listener to Show People button
         button.addEventListener(`click`, (event) => {
             event.preventDefault()
             ol.classList.toggle(`hidden`)
-        })
+        })         
     })
     .catch(err => console.log(err))
 }
