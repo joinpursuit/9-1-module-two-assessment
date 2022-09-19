@@ -59,31 +59,18 @@ function run() {
     console.log(myReview);
     const li = document.createElement('li');
     li.innerHTML = `<strong><b>${select.value}:</strong></b> ${myReview}`;
-    // console.log;
     ul.append(li);
 
     //! Select a movie error message
-
-    function movieError() {
-      alert(`Please select a Movie`);
+    function error() {
+      e.preventDefault();
+      alert(`Please make sure all dropdown and text fields are entered`);
     }
 
-    function reviewError() {
-      alert(`review field cannot be empty`);
-    }
-
-    if (!myReview) {
-      //   e.preventDefault();
-      reviewError();
+    if (!myReview || !name) {
+      error();
       //   ul.innerHTML = '';
-    } else if (myReview) {
-      form.reset();
-    }
-    if (!name) {
-      //   e.preventDefault();
-      movieError();
-      //   ul.innerHTML = '';
-    } else if (name) {
+    } else if (myReview && name) {
       e.preventDefault();
       form.reset();
     }
