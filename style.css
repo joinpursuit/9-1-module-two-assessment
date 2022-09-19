@@ -1,0 +1,22 @@
+body{
+    background-color:lavender ;
+    font-family: monospace;
+    display: grid;
+}
+header{
+display: grid;
+width: 75%;
+background-color: skyblue;
+height: 100px;
+grid-template-columns: 25% 75%;
+margin: auto;
+}
+
+img{
+    height: 100px;
+   
+}
+
+h1{
+    margin-left: 400px;
+}
