@@ -25,19 +25,21 @@ function run() {
         // console.log(id);
         const createOpt = document.createElement('option');
         createOpt.textContent = name;
-        createOpt.value = name;
+        createOpt.value = id;
         select.append(createOpt);
       }
     })
     .catch((err) => console.log(err));
 
-  //! select add event listener
+  //! initialize movieTitle variable to retain the value of the find method
+  let movieTitle;
 
+  //! select add event listener
   select.addEventListener('change', (e) => {
     e.preventDefault();
-    const callBack = fetchCall.find((e) => e.title === `${select.value}`);
+    const callBack = fetchCall.find((e) => e.id === `${select.value}`);
     // console.log(callBack);
-
+    movieTitle = callBack;
     info.innerHTML = '';
     const h3 = document.createElement('h3');
     const p1 = document.createElement('p');
@@ -49,30 +51,24 @@ function run() {
   });
 
   //! form event listener
-
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const name = `${select.value}`;
-    console.log(name);
+    const name = `${movieTitle.title}`;
     const myReview = `${review.value}`;
-    console.log(myReview);
-    const li = document.createElement('li');
-    li.innerHTML = `<strong><b>${select.value}:</strong></b> ${myReview}`;
-    ul.append(li);
-
+    // console.log(name);
+    // console.log(myReview);
+    if (!name) {
+      error();
+    } else {
+      const li = document.createElement('li');
+      li.innerHTML = `<strong><b>${name}:</strong></b> ${myReview}`;
+      ul.append(li);
+      form.reset();
+    }
     //! Select a movie error message
     function error() {
-      e.preventDefault();
-      alert(`Please make sure all dropdown and text fields are entered`);
-    }
-
-    if (!myReview || !name) {
-      error();
-      //   ul.innerHTML = '';
-    } else if (myReview && name) {
-      e.preventDefault();
-      form.reset();
+      alert(`Please select a movie first`);
     }
   });
 
