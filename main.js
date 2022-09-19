@@ -1,13 +1,61 @@
+//people are array of links -> fetch again -> object -> 'name' key
 
+// url : https://ghibliapi.herokuapp.com/films
 
+// CREATE MAIN ELEMENT VARIABLES, FORM, SELECT, UL, OL
+const dropdown = document.getElementById(`titles`)
+const form = document.querySelector(`form`)
+const peopleList = document.querySelector(`ol`)
+const reviewList = document.querySelector(`ul`)
 
+//CREATE FETCH FUNCTION
+const fetchInfo = () => {
+    fetch(`https://ghibliapi.herokuapp.com/films`)
+    .then(res => res.json())
+    .then(respJson => {
+        
+        respJson.forEach(({id, title, description, release_date, people}) => {
+            const titleClass = title.split(` `).join(``)
+            const option = document.createElement(`option`)
+            option.value = id
+            option.innerText = title
+            dropdown.append(option)
 
+            const summary = document.createElement(`article`)
+            summary.innerHTML = `
+            <h3>${title}</h3>
+            <p>${release_date}</p>
+            <p>${description}</p>
+            `
+            summary.classList.add(`hiddenDescription`)
+            summary.id = id
+            document.getElementById(`display-info`).append(summary)
+
+            people.forEach(p => {
+                fetch(`${p}`)
+                .then(res2 => res2.json())
+                .then(respJson2 => {
+                    const person = document.createElement(`li`)
+                    person.classList.add(`${titleClass}`)
+                    person.classList.add(`hiddenPerson`)
+                    person.innerText = respJson2.name
+                    peopleList.append(person)
+                })
+                .catch(err => console.log(err))
+                
+            })
+
+        })
+    })
+    .catch(error => console.log(error))
+    
+}
 
 
 // To ensure Cypress tests work as expeded, add any code/functions that you would like to run on page load inside this function
 
 function run() {
- // Add code you want to run on page load here
+    fetchInfo()
 }
 
 // This function will "pause" the functionality expected on load long enough to allow Cypress to fully load
