@@ -1,0 +1,29 @@
+
+body {
+    background-color: lavender;
+    font-family: monospace;
+}
+
+header {
+    background-color: skyblue;
+    text-align: right;
+    font-weight: bold;
+    width: 75%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img {
+    width: 20%;
+    height: auto;
+    margin-left: 0;
+    margin-right: auto;
+    display: block;
+}
+
+main {
+    width: 75%;
+    margin-left: 13%;
+    margin-right: auto;
+}
