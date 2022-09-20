@@ -5,7 +5,8 @@ const url = "https://ghibliapi.herokuapp.com/films/";
 const movieDetails = document.querySelector("#display-info");
 const people = document.querySelector("#show-people");
 const reviews = document.querySelector("#reviews");
-
+const ul = document.querySelector("ul");
+const ol = document.querySelector("ol");
 function run() {
   // Add code you want to run on page load here
   fetch(`${url}`)
@@ -42,12 +43,21 @@ function run() {
       form.addEventListener("submit", (event) => {
         event.preventDefault();
 
-        const list = document.createElement("li");
-        list.innerHTML = `<strong>${selectTitles.value}</strong>:${event.target.review.value}`;
-        ul.append(list);
-
+        const review = document.querySelector("#review");
+        if (review === "") {
+          alert("Please select a movie first");
+        }
+        // console.log(filmData);
+        filmData.foreach((element) => {
+          const list = document.createElement("li");
+          list.innerHTML = `<strong>${element.title}</strong>:${event.target.review.value}`;
+          ul.append(list);
+        });
         form.reset();
       });
+
+      const resetBtn = document.querySelector("#reset-reviews");
+      resetBtn.addEventListener("click", (event) => {});
     })
     .catch((error) => console.log(error));
 }
