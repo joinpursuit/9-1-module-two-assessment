@@ -17,6 +17,7 @@ header h1 {
     text-align: right;
 }
 
-ul {
+#reviews li {
+    font-family: 'Times New Roman', Times, serif;
     list-style: none;
 }
