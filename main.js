@@ -1,3 +1,7 @@
+let counter = 0
+let resz = null
+let detailsCounter = 0
+
 // New Elements
 //  const exampleOption = document.querySelector('option')
  
@@ -5,16 +9,27 @@
 const select = document.querySelector('select')
 const reviewForm = document.querySelector('form')
 const reviews = document.querySelector('.review')
-
+const button = document.querySelector('button')
+const details = document.querySelector('div')
 // Listeners
 reviewForm.addEventListener('submit', event=> {
     event.preventDefault()
     const reviewInput = document.getElementById("review").value;
     const title = select.options[select.selectedIndex].value
-    const review = document.createElement('option')
+    const review = document.createElement('li')
     review.value = title
     review.textContent = `${title}: ${reviewInput}`
     reviews.append(review)
+    counter += 1
+})
+
+button.addEventListener('click', event => {
+    const remItem = document.querySelector('li')
+    const remItemNum = document.querySelectorAll('li')
+    console.log(remItemNum.length)
+    for (let index = 0; index < counter; index++) {
+        remItem.remove()
+    }
 })
 
 
@@ -65,3 +80,40 @@ function run() {
 // A non-hacky solution is being researched
 
 setTimeout(run, 1000);
+
+// movie details 
+const baseURL = 'https://ghibliapi.herokuapp.com'
+const peopleURL = '/people'
+const filmURL = '/films'
+select.addEventListener('change', function handleChange(event) {
+    // console.log(event.target.value)
+    const selected = event.target.value
+
+ fetch(`${baseURL}${filmURL}`)
+ .then((res) => res.json())
+ .then((res) => {
+    if (document.querySelector('h3')){
+        document.querySelector('p').remove()
+        // document.querySelector('p').remove()
+        document.querySelector('p').remove()
+        document.querySelector('h3').remove()
+    }
+    people = res
+
+    for (var i = 0; i < res.length; i++) {
+    // console.log(`Response:`,res,'End of Response')
+    if (res[i].title === event.target.value) {
+        detailsCounter += 1
+        const movieDetails = document.createElement('h3')
+        const movieDetailsP = document.createElement('p')
+        const movieDetailsP2 = document.createElement('p')
+        movieDetails.textContent = res[i].title
+        movieDetailsP.textContent = res[i].release_date
+        movieDetailsP2.textContent = res[i].description
+        movieDetails.classList.add('rem')
+        movieDetailsP.classList.add('rem')
+        movieDetailsP2.classList.add('rem')
+        details.append(movieDetails,movieDetailsP,movieDetailsP2)
+    }}
+})
+}) 

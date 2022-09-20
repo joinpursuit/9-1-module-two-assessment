@@ -26,3 +26,14 @@
         >
 > stopping at 846PM
 > pushing 'started page, added two sections'
+> started at 9:00PM
+> finished header
+> select menu
+    > select the select
+    > need to pull data
+    > finished
+> Adding a review
+> done
+> pushed ' review functionality added '
+> putting reset reviews button
+> working ( somewhat, only removes one item at a time )
