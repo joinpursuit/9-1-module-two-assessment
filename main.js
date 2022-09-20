@@ -13,7 +13,6 @@ function run() {
  fetch(url)
  .then((res) => res.json())
  .then((data) => {
-   
     data.forEach((movie) =>{
         let option = document.createElement('option')
         option.value = movie.title
@@ -40,7 +39,6 @@ function run() {
         event.preventDefault()
         const input = event.target.review.value
         const li = document.createElement('li')
-        li.classList.add('test')
         let movies = select.value
         if(movies === ""){
             alert('Please select a movie first')
@@ -50,12 +48,12 @@ function run() {
                 event.target.reset()
         }
     });
-    
  })
    
  .catch(error =>{
     console.log(error)
  });
+
     button.addEventListener('click', (event) => {
         event.preventDefault()
          ul.innerHTML = '';
@@ -71,8 +69,7 @@ fetch(URL)
         const people = document.createElement('li')
         people.innerHTML = peopleData[i].name
         ol.append(people)
-    }
-    
+    }   
  })
    
  .catch(error =>{
