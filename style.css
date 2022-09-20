@@ -1,0 +1,22 @@
+* {
+    font-family: monospace;
+}
+
+body {
+    background-color: lavender;
+}
+
+header {
+    width: 75%;
+    background-color: skyblue;
+    height: 200px;
+    padding-bottom: 50px;
+}
+
+header img {
+    height: 200px;
+}
+
+ h1 {
+    text-align: right;
+ }
