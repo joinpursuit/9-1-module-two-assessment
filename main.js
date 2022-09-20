@@ -29,6 +29,7 @@ function run() {
                 let reviewInputBox = document.querySelector('#review')
                 const reviewItem = document.createElement('li')
                 const enteredReviews = document.querySelector('#enteredReviews')
+                
                
             
                 //loop through fetched movie api data to assign title info to drop down list option elements
@@ -43,7 +44,6 @@ function run() {
                 dropDownList.addEventListener(("change"), (event) =>{
                     const selectedMovie = `${dropDownList.value}`
                     let index = data.findIndex(movie => movie.title === selectedMovie)
-
                     // API data tests
                     // console.log("selected movie = ", selectedMovie)
                     // console.log("selected movie title = ", data[index].title)
@@ -90,11 +90,42 @@ function run() {
                 // ** Event Listener for Review Reset Button **
                 reviewResetButton.addEventListener(("click"), (event) =>{
                     event.preventDefault()
-                    // enteredReviews.innerHTML = " "
-                    reviewItem.remove()
+                    reviewItem.remove()      //remove line items (reviews) from the review section
                 })  // end of Review Form event listener
 
                 
+                    const showPeopleButton = document.querySelector('#show-people')
+                    const showPeopleList = document.querySelector('.showPeopleList')
+                    showPeopleButton.type = "submit"
+
+                // ** Event Listener for Show People Button **
+                showPeopleButton.addEventListener(("click"), (event) =>{
+                    event.preventDefault()
+                    let index = data.findIndex(movie => movie.title === dropDownList.value)
+                    let totalPersons = data.length
+                    let personName = document.createElement('li')
+                        for (let i = 0; i <= totalPersons; i++){
+                        console.log(data[index].people[i])
+                        let url2 =`${data[index].people[i]}`
+                        fetch(url2)
+                            .then((response) => response.json())
+                            .then((personData) => {
+                            let personName = document.createElement('li')
+                            console.log("person data = ", personData.name)
+                            personName.textContent = personData.name
+                            showPeopleList.append(personName)
+                            })
+                        }
+                       // .catch((error) => console.log(error))
+                    }) // end of Show People Button event listener
+
+                   
+                    
+               
+                 
+
+
+
         }) //end of fetch call
 
 

@@ -26,8 +26,8 @@
             <h2 class ="reviewHeader">Add a review</h2>
             <form  class = "reviewForm" action="">
                 <label  class ="reviewLabel" for="review">Your review</label>
-                <input id ='review' type="text">
-                <input type="submit">
+                <input id ='review' type="text" >
+                <input type="submit" value  = "Submit review">
             </form>
         </section>
 
@@ -40,16 +40,18 @@
         <section class="peopleSection">
             <h2 class="peopleHeader">People</h2>
             <!--  *** This list will be populated with line items as people names are added ***-->
-            <ol class=""peopleListGroup></ol>
             <button id="show-people">Show People</button>
+            <ol class="showPeopleList"></ol>
+
 
         </section>
 
         <section>
             <h2>Reviews</h2>
             <!-- *** Will be populated with line items as reviews are added ***-->
-            <ul id = "enteredReviews"></ul>
             <button id="reset-reviews">Reset Reviews</button>
+            <ul id = "enteredReviews"></ul>
+
         </section>
     </main>
 </body>
