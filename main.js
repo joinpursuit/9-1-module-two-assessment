@@ -16,10 +16,11 @@ function myFunction() {
     
  // Add code you want to run on page load here
     }
+    let reviewForm=document.querySelector('form')
     let dropdown= document.getElementById('title')
     let BASE_URL= 'https://ghibliapi.herokuapp.com/films'
 fetch(BASE_URL)
-.then((response)=>response.json())
+.then((res)=>res.json())
 .then((json)=>{
     for(let e of json){
         const option = new Option(e.title, e.title);
@@ -29,20 +30,62 @@ fetch(BASE_URL)
         dropdown.addEventListener('change', (event)=>{
             event.preventDefault();
             const pickedID =event.target.value
+            let info =document.getElementById('display-info')
+    
             for(let movie of json){
                 if (pickedID === movie.id){
                     info.textContent = ''
                     const h3 =document.createElement('h3');
                     info.prepend(h3);
                     h3.textContent = movie.title;
+                    const p1 =document.createElement('p');
+                    info.append(p1);
+                    p1.textContent=movie.release_date;
+                    const p2 =document.createElement('p');
+                    p2.textContent=movie.description;
+                    info.append(p2)
+                    
                 }
             }
-        })
-    }
-})
-.catch((error) => {
-console.log(error);
+            let peopleButton=document.getElementById('show-people')
+            let PEOPLE_URL ='https://ghibliapi.herokuapp.com/people'
+            let peopleNames=document.querySelector('ol')
+            let ul=document.querySelector('ul')
+            peopleButton.addEventListener('click', (event)=> {
+                event.preventDefault()
+                fetch(PEOPLE_URL)
+                .then((res)=> res.json())
+                .then((people)=>{
+                    people.innerHTML = '';
+                    for(let person of people){
+                        for (let film of person.films){
+
+                        
+                        if(film === `${BASE_URL}${pickedID}`){
+                            let personList =document.createElement('li')
+                            personList.textContent = person.name
+                            peopleNames.append(personList)
+                     }
+                    }
+                    }
+                })   
+             })
+
+        })     
+     }
+        
+    })
+    // getReviews(json);
+
+
+
+
+.catch((error)=>{
+    console.log(error);   
 });
+
+
+
 const displayData = (data) => {
     console.log(data);
 }
