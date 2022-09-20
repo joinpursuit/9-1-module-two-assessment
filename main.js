@@ -9,7 +9,7 @@ let detailsCounter = 0
 const select = document.querySelector('select')
 const reviewForm = document.querySelector('form')
 const reviews = document.querySelector('.review')
-const button = document.querySelector('.reset')
+const button = document.querySelector('.reset') // reset views button
 const details = document.querySelector('div')
 // Listeners
 reviewForm.addEventListener('submit', event=> {
@@ -17,6 +17,12 @@ reviewForm.addEventListener('submit', event=> {
     const reviewInput = document.getElementById("review").value;
     const title = select.options[select.selectedIndex].value
     const review = document.createElement('li')
+    
+    //checking for a value selected
+    if(!select.options[select.selectedIndex].value){
+        alert('Please select a movie first')
+    }
+
     review.value = title
     review.innerHTML = `<strong>${title}:</strong> ${reviewInput}`
     reviews.append(review)

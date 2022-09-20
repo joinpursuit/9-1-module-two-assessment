@@ -41,3 +41,8 @@
 > bug fixing:
     > grabbing the wrong button in our review listner, need to select the correct button due to it selecting the first one which is show people.
     > adding class to reset reviews and selecting that insteaed
+    > 'pushing 'fix bug: selected correct button now reset review functionality partialy finished'
+    > no code under timeout, moving.
+    > pushed ' moved code above setTimeout line of code '
+    > on review submission, check if there is selection, if none; alert 'Please select a movie first'
+    > pushing ' added alert on review submission if value is not selected'
