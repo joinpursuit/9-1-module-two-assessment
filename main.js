@@ -55,6 +55,13 @@ function run() {
     form.addEventListener("submit", (event) => {
         event.preventDefault()
 
+        
+        let reviewInput = event.target.reviewText.value
+        const reviewList = document.createElement("li")
+        reviewList.innerHTML = `${reviewInput}`
+        
+        form.append(reviewList)
+        
         // for (let i = 0; i < data.length; i++) {
         //     let movieName = document.getElementById('titles')
         //     // let movieTitleName = movieName.options[movieName[i]].value
@@ -62,24 +69,18 @@ function run() {
         // }
 
         // Use value in option to get movie name to display next to review. If option value = "" then display alert error.
-
-        let reviewInput = event.target.reviewText.value
-        const reviewList = document.createElement("li")
-        reviewList.innerHTML = `${reviewInput}`
-
-        form.append(reviewList)
-
         form.reset()
     })
 
     const resetButton = document.querySelector('#reset-reviews')
-    const allReviews = document.querySelector('li')
+    const reviewList2 = document.querySelector("form ul") // Selects the list of reviews. Need to find a way to make this reset in the event listener.
+
+    console.log(reviewList2)
     // console.log(resetButton)
 
     resetButton.addEventListener("click", (event) => {
         event.preventDefault()
         console.log("test") // Testing event listener.
-        allReviews.innerHTML = ""
         form.reset()
     })
     
