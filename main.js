@@ -63,7 +63,8 @@ form.addEventListener(`submit`, (event) => {
     alert(`Please select a movie first`);
   } else if (!inputReview.value) {
     const noReview = document.createElement(`p`);
-    noReview.innerHTML = `<strong>Please add a review</strong>`;
+    noReview.classList.add(`error`);
+    noReview.innerHTML = `<strong>Please add your review!</strong>`;
     form.after(noReview);
     const removeErrMess = () => noReview.remove();
     setTimeout(removeErrMess, 4000);
