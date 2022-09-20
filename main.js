@@ -47,11 +47,11 @@ function people(URL) {
               // console.log("person resJson", resJson.films);
 
 
-            
+            if (resJson.name !== undefined) {
               let peopleLi = document.createElement("li");
               peopleLi.innerText = resJson.name;
               peopleOl.append(peopleLi);
-            
+            }// closes IF
 
           }); // closes inner fetch
       }); //closes personLayer2 forEach
