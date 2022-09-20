@@ -54,9 +54,7 @@ fetch ('https://ghibliapi.herokuapp.com/films')
         form.reset()
     })   
     const resetReveiw = document.querySelector('#reset-reviews')
-    const resetShoutout = document.getElementsByClassName('.reveiwlist')
-    // removeList = document.querySelectorAll('li')
-    console.log(resetShoutout)
+   
     resetReveiw.addEventListener('click',() => {
         ul.replaceChildren()
     })
@@ -66,22 +64,31 @@ fetch ('https://ghibliapi.herokuapp.com/films')
         showPeople.addEventListener('click', () => {
            peopleList.replaceChildren()
 
-        for (const titles of movie) {
-            if(select.value === titles.title){
-                   console.log(titles.people)
-             for (const person of titles.people) {
-                   fetch(person)
-                   .then((res) => res.json())
-                   .then((person) =>{
-                    console.log(person)
-                    const list = document.createElement('li')
-                   list.innerText = person.name
-                    peopleList.append(list)
-                   })
-                }  
-            }
-        }
-        
+           let noPerson = 'https://ghibliapi.herokuapp.com/people/'
+           for (const titles of movie) {
+               if(select.value === titles.title){
+                   for (const person of titles.people) {
+                       console.log(person)
+                    if (person === noPerson) {
+                        
+                    } else {
+                        fetch(person)
+                        .then((res) => res.json())
+                        .then((person) =>{
+                            console.log(person)
+                            const list = document.createElement('li')
+                            list.innerText = person.name
+                            peopleList.append(list)
+                            
+                            if(list.innerText === undefined){
+                                list.remove()
+                            }
+                            
+                        })
+                    }
+                   }  
+               }
+           }
         })
     })
 .catch((err) => {
