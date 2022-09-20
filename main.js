@@ -9,7 +9,7 @@ let detailsCounter = 0
 const select = document.querySelector('select')
 const reviewForm = document.querySelector('form')
 const reviews = document.querySelector('.review')
-const button = document.querySelector('button')
+const button = document.querySelector('.reset')
 const details = document.querySelector('div')
 // Listeners
 reviewForm.addEventListener('submit', event=> {
