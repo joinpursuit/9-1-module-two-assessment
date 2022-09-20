@@ -16,3 +16,8 @@ h1{
     display: inline-block;
     margin-left: 20vw ;
 }
+.reset-reviews{
+    width: 25px;
+    height: 10px;
+    background-color: lightgreen;
+}

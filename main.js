@@ -25,7 +25,13 @@ function run() {
                 const displayMovieHeader = document.createElement('h3')
                 const displayMoviePara1 = document.createElement('p')
                 const displayMoviePara2 = document.createElement('p')
+                const reviewForm = document.querySelector('.reviewForm')
+                let reviewInputBox = document.querySelector('#review')
+                const reviewItem = document.createElement('li')
+                const enteredReviews = document.querySelector('#enteredReviews')
+               
             
+                //loop through fetched movie api data to assign title info to drop down list option elements
                 for(movieInfo of data) {
                     let option = document.createElement('option')
                     option.textContent = movieInfo.title
@@ -33,10 +39,12 @@ function run() {
                     dropDownList.append(option)
                 }
 
+                //** Event Listener for Drop Down List **
                 dropDownList.addEventListener(("change"), (event) =>{
                     const selectedMovie = `${dropDownList.value}`
                     let index = data.findIndex(movie => movie.title === selectedMovie)
 
+                    // API data tests
                     // console.log("selected movie = ", selectedMovie)
                     // console.log("selected movie title = ", data[index].title)
                     // console.log("selected movie rel date= ", data[index].release_date)
@@ -49,29 +57,51 @@ function run() {
                     displayMovieInfo.append(displayMovieHeader)
                     displayMovieHeader.after(displayMoviePara1)
                     displayMoviePara1.after(displayMoviePara2)
-               })
-               
-               
-       
+
+                })  //end of Select event listener
 
 
-//An `h3` with the movie's title appear in the display-info section of the page.
-// A `p` with the movie's release year.
-// A `p` with the description of the movie.
+                // ** Event Listener for Review Form **
+                reviewForm.addEventListener(("submit"), (event) =>{
+                    event.preventDefault()
+                    if(dropDownList.value === "") {
+                        let msgNoMovie = document.createElement('p')
+                        msgNoMovie.innerHTML = "Please select a movie first"
+                        msgNoMovie.setAttribute("style","font-size: 15px; color: red")
+                        msgNoMovie.classList.add('error')
+                        dropDownSection.append(msgNoMovie)
+                    } else {
+
+                    let reviewText = event.target.review.value
+                    console.log('reviewText=', reviewText)
+                   
+                    reviewItem.innerHTML = `<strong> ${dropDownList.value}: </strong> ${reviewText}`  //display movie title & review
+                    enteredReviews.append(reviewItem)   //attach review to ordered list element
+                    reviewInputBox.value = ""    //clear input field
+                    }
+                })  // end of Review Form event listener
 
 
 
+            
+                    const reviewResetButton = document.querySelector('#reset-reviews')
+                    reviewResetButton.type = "submit"
 
+                // ** Event Listener for Review Reset Button **
+                reviewResetButton.addEventListener(("click"), (event) =>{
+                    event.preventDefault()
+                    // enteredReviews.innerHTML = " "
+                    reviewItem.remove()
+                })  // end of Review Form event listener
 
-
-
+                
         }) //end of fetch call
 
 
         .catch((error) => console.log(error))
 
 
-    } //end of my anonymous function "getMovies"
+    } //end of function "getMovies"
 
 
      
@@ -90,3 +120,9 @@ function run() {
 // A non-hacky solution is being researched
 
 setTimeout(run, 1000);
+
+
+//notes
+                // const reviewResetButton  = document.createElement('reviewResetButton')
+                // reviewResetButton.classList.add('reset-reviews')
+                // enteredReviews.after(reviewResetButton)
