@@ -1,0 +1,25 @@
+header {
+    max-width: 75%;
+    margin: auto;
+    background: skyblue;
+    margin-top: 0px;
+}
+
+header img{
+    height: 100px;
+}
+
+header h1{
+    text-align: right;
+    padding-right: 70px;
+}
+
+body {
+    background-color: lavender;
+    font-family: monospace;
+    text-align:  left;
+
+}
+p{
+    font-family: monospace;
+}

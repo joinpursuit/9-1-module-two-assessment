@@ -1,0 +1,28 @@
+> todays plan:
+> put base url and end points into js
+> create html exo
+> style page
+> start select menu population
+    > api pull and put data into selection
+    >movie description of selection population on select
+> add reviews form; on submit:
+    > append review in list under form; all reviews stay when different selection
+> get people for movie
+> blocks: none
+
+> starting 114PM
+> stopped around 4pm
+> creating index.html
+    > html 5
+    > linking our main.js
+    > linking our styles.css
+> creating styles.css
+> starting 8PM
+> creating html exo
+> body
+    > background color
+    > text color
+    > header
+        >
+> stopping at 846PM
+> pushing 'started page, added two sections'
