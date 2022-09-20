@@ -75,7 +75,7 @@ function run() {
                     let reviewText = event.target.review.value
                     console.log('reviewText=', reviewText)
                    
-                    reviewItem.innerHTML = `<strong> ${dropDownList.value}: </strong>` +  `${reviewText}`  //display movie title & review
+                    reviewItem.innerHTML = `<strong>${dropDownList.value}: </strong>${reviewText}`  //display movie title & review
                     enteredReviews.append(reviewItem)   //attach review to ordered list element
                     reviewInputBox.value = ""    //clear input field
                     }
@@ -90,8 +90,10 @@ function run() {
                 // ** Event Listener for Review Reset Button **
                 reviewResetButton.addEventListener(("click"), (event) =>{
                     event.preventDefault()
-                    reviewItem.remove()      //remove line items (reviews) from the review section
+                    // reviewItem.remove()      //remove line items (reviews) from the review section - this method was not accepted by Cypress
+                    enteredReviews.innerHTML =""
                 })  // end of Review Form event listener
+                 
 
                 
                     const showPeopleButton = document.querySelector('#show-people')
