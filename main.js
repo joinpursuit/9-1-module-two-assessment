@@ -55,6 +55,8 @@ function run() {
         const list = document.createElement("li");
         list.innerHTML = `<strong>${selectTitles.value}: </strong>${event.target.review.value}`;
         ul.append(list);
+
+        form.rest();
       });
 
       const resetBtn = document.querySelector("#reset-reviews");
