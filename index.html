@@ -17,15 +17,15 @@
 
   <main>
     <!-- Select a movie -->
-    <section id="movies">
+    <section class="movies" required>
       <h2>Select a movie</h2>
       <select id="titles">
         <option value=""></option>
       </select>
-      <div id="error-text"></div>
+      
     </section>
     <!-- Write Review -->
-    <section id="write-rev">
+    <section class="write-rev">
       <h2>Add a review</h2>
       <form id="form">
         <label for="review">Your review</label>
@@ -34,12 +34,12 @@
       </form>
     </section>
     <!-- Movie details -->
-    <section id="movie-dets">
+    <section class="movie-dets">
       <h2>Movie details</h2>
       <div id="display-info"></div>
     </section>
     <!-- people -->
-    <section id="people">
+    <section class="people">
       <h2>People</h2>
       <ol id="ol"></ol>
       <button id="show-people">Show People</button>
@@ -50,9 +50,9 @@
       <ul id="ul"></ul>
       <button id="reset-reviews">Reset Reviews</button>
     </section>
-
   </main>
-
+  <div id="error-text"></div>
+  
 </body>
 
 </html>

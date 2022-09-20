@@ -31,7 +31,11 @@ const selectMovie = document.getElementById("titles");
 const movies = (films) => {
   films.forEach((film) => {
     const optionTag = document.createElement("option");
-    optionTag.value = JSON.stringify(film);
+    if (typeof film === "object") {
+      optionTag.value = JSON.stringify(film);
+    } else {
+      optionTag.value = film;
+    }
     optionTag.textContent = film.title;
     selectMovie.appendChild(optionTag);
   });
@@ -42,11 +46,8 @@ const displayMovie = (film) => {
   selectMovie.addEventListener("change", (e) => {
     e.preventDefault();
 
-    /*  h3 for movie title, 
-    p for movie year, 
-    p for movie description */
-
     const movieDescription = document.getElementById("display-info");
+    movieDescription.innerHTML = "";
 
     // h3-movie tittle
     const h3 = document.createElement("h3");
@@ -67,27 +68,44 @@ const displayMovie = (film) => {
     description.textContent = `${film.description}`;
   });
 };
-
 // EVENT LISTENER - SUBMIT BUTTON
 const form = document.getElementById("form");
 form.addEventListener("submit", (e) => {
-  const film = JSON.parse(selectMovie.options[selectMovie.selectedIndex].value);
   e.preventDefault();
 
-  // error
-  let errText = document.getElementById("error-text");
-  let review = document.getElementById("review");
+  if (selectMovie.options[selectMovie.selectedIndex].value === "") {
+    alert("Please select a movie");
+    return false;
+  }
 
-  if (!film.title) {
-    const errP = document.createElement("p");
-    errP.innerText = "Please select a movie first";
-    errText.appendChild(errP);
-  // review content
-  } else {
+  const film = JSON.parse(selectMovie.options[selectMovie.selectedIndex].value);
+
+  // reset Review section and people section
+  const resetButton = document.getElementById("reset-reviews");
+  resetButton.addEventListener("click", (e) => {
+    ul.innerHTML = "";
+    ol.innerHTML= ''
+  });
+
+  // ul li review
+  const review = document.getElementById("review");
   const ul = document.getElementById("ul");
-  const li = document.createElement("li")
-  ul.appendChild(li)
-  li.textContent = `${film.title}: ${review.value}`
-}
-errText.innerHTML = ''
+  const li = document.createElement("li");
+
+  li.innerHTML = `<strong>${film.title}</strong>: ${review.value}`;
+  ul.appendChild(li);
+
+  //li.textContent = ;
+  review.value = "";
 });
+
+
+const peopleButton = document.getElementById("show-people");
+  peopleButton.addEventListener("click", (e) => {
+
+    const ol = document.getElementById("ol")
+    const li = document.createElement("li")
+    ol.appendChild(li)
+    li.textContent = `Too hard`;
+   
+  });
