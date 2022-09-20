@@ -6,6 +6,7 @@ const submitButton = document.getElementById('submit')
 const reviewList = document.querySelector('ul')
 const input = document.getElementById('review')
 const resetReviews = document.getElementById('reset-reviews')
+const form = document.querySelector('form')
 
 // To ensure Cypress tests work as expeded, add any code/functions that you would like to run on page load inside this function
 
@@ -26,6 +27,7 @@ function run() {
         })
 }
 
+
 document.getElementById('titles').addEventListener('change', function() {
     fetch(`${BASE_URL}/${this.value}`)
         .then((res) => res.json())
@@ -41,26 +43,26 @@ document.getElementById('titles').addEventListener('change', function() {
                 event.preventDefault()
             
                 const reviewListItem = document.createElement('li')
-                reviewListItem.innerHTML = `<strong>${data.title}:</strong> ${input.value}`
                 reviewList.append(reviewListItem)
+                reviewListItem.innerHTML = `<strong>${data.title}:</strong> ${input.value}`
+                
                 // console.log(input.value)
-
+            
                 input.value = ``
+                form.reset()
             })
-
-            resetReviews.addEventListener('click', (event) => {
-                event.preventDefault()
-
-                reviewList.textContent = ''
-
-            })
-
         })
         .catch((error) => {
             console.log(error)
         })
 })
 
+resetReviews.addEventListener('click', (event) => {
+    event.preventDefault()
+
+    reviewList.textContent = ''
+
+})
 
 
 
