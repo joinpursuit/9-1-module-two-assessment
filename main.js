@@ -18,8 +18,9 @@ reviewForm.addEventListener('submit', event=> {
     const title = select.options[select.selectedIndex].value
     const review = document.createElement('li')
     review.value = title
-    review.textContent = `${title}: ${reviewInput}`
+    review.innerHTML = `<strong>${title}:</strong> ${reviewInput}`
     reviews.append(review)
+    reviewForm.reset()
     counter += 1
 })
 

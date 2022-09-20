@@ -11,7 +11,7 @@
 <body>
     <header>
         <h1>Ghibli Review App</h1>
-        <img src="/images/ghibli-logo.png">
+        <img alt="Ghibli logo" src="./images/ghibli-logo.png">
         
     </header>
     <main>
@@ -19,7 +19,7 @@
             <h2>Select a movie</h2>
             <select>
                 <!-- here our api will put movie data here via option elements -->
-                <option value="blank"></option>
+                <option value=""></option>
             </select>
         </section>
         <section class="movie" class="review">
@@ -32,19 +32,20 @@
         </section>
         <section class="movie" class="detail">
             <h2>Movie details</h2>
-            <div id="display-info>">
+            <div id="display-info">
                 <!-- will be populated with h2 elements when movie is selected -->
             </div>
         </section>
         <section class='movie' class="people">
             <h2>People</h2>
+            <button id='show-people' class="reset" type="button">Show People</button>
         </section>
-        <section class="review">
+        <section id='reviews' class="review">
             <h2>Reviews</h2>
             <ul>
                 <!-- will be populated with li as reviews are submitted -->
             </ul>
-            <button class="reset" type="button">Reset Reviews</button>
+            <button id='reset-reviews' class="reset" type="button">Reset Reviews</button>
         </section>
     </main>
 </body>
