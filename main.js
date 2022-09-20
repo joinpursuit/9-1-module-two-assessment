@@ -43,8 +43,10 @@ function run() {
         event.preventDefault();
 
         const list = document.createElement("li");
-        list.innerHTML = `<strong>${element.title}</strong>:${event.target.review.value}`;
+        list.innerHTML = `<strong>${selectTitles.value}</strong>:${event.target.review.value}`;
         ul.append(list);
+
+        form.reset();
       });
     })
     .catch((error) => console.log(error));
