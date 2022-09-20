@@ -10,6 +10,10 @@ function run() {
  // Add code you want to run on page load here
 
 const url = "https://ghibliapi.herokuapp.com/films"
+const url2 = "https://ghibliapi.herokuapp.com/people"
+const method =`https://ghibliapi.herokuapp.com/people/598f7048-74ff-41e0-92ef-87dc1ad980a9`
+
+console.log(method.slice(39, 75))
 
 const section = document.querySelector("#titles")
 
@@ -22,6 +26,9 @@ const form = document.querySelector("form")
 const reset = document.querySelector("#reset-reviews")
 
 const error = document.querySelector(".error")
+
+const show = document.querySelector("#show-people")
+console.log(show)
 
 fetch(url)
 .then((res) => res.json())
@@ -57,6 +64,29 @@ section.addEventListener("change", () => {
         const detail = resJson.description
         
         p2.innerHTML = detail
+
+        const value = section.value
+
+    show.addEventListener("click", () => {
+        fetch(url2)
+        .then((res) => res.json())
+        .then((resJson) => {
+            for(let i = 0; i < resJson.length; i++){
+                const name = resJson[i].name
+                for(let j = 0; j < resJson[i].films.length; j++){
+                     const films = resJson[i].films[j].slice(38, 75)
+                     const array = films.split(",")
+                    const newArray = [...array]
+                    if(newArray.includes(value)){
+                        makeList(name)
+                    }
+                        
+                     
+                }
+            }
+        })
+        .catch((error) => console.log(error))
+    })
         
     })
     .catch((error) => console.log(error))
@@ -115,6 +145,25 @@ function addList(reviews, title){
         unorder.removeChild(li)
     })
 })
+
+function getList(name){
+    const li = document.createElement("li")
+    
+        
+        if(name){
+            
+            li.textContent = name
+        }
+        return li
+    }
+
+    function makeList(name){
+        const li = getList(name);
+        const ol = document.querySelector("ol");
+        
+        ol.append(li)
+    }
+
 
 }
 
