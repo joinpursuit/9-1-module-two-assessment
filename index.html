@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer src="/main.js"></script>
+    <link rel='stylesheet' href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Ghibli Review App</h1>
+        <img alt="Ghibli logo" src="./images/ghibli-logo.png">
+        
+    </header>
+    <main>
+        <section class="movie" class="section">
+            <h2>Select a movie</h2>
+            <select>
+                <!-- here our api will put movie data here via option elements -->
+                <option value=""></option>
+            </select>
+        </section>
+        <section class="movie" class="review">
+            <h2>Add a review</h2>
+            <form>
+                <label for="review">Your review:</label>
+                <input id="review" type="text">
+                <input type="submit">
+            </form>
+        </section>
+        <section class="movie" class="detail">
+            <h2>Movie details</h2>
+            <div id="display-info">
+                <!-- will be populated with h2 elements when movie is selected -->
+            </div>
+        </section>
+        <section class='movie' class="people">
+            <h2>People</h2>
+            <button id='show-people' class="reset" type="button">Show People</button>
+        </section>
+        <section id='reviews' class="review">
+            <h2>Reviews</h2>
+            <ul>
+                <!-- will be populated with li as reviews are submitted -->
+            </ul>
+            <button id='reset-reviews' class="reset" type="button">Reset Reviews</button>
+        </section>
+    </main>
+</body>
+</html>
