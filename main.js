@@ -13,7 +13,7 @@ let arrayLength = 0
 // To ensure Cypress tests work as expeded, add any code/functions that you would like to run on page load inside this function
 
 function run() {
-    fetch("ghibliapi.herokuapp.com/films")
+    fetch("https://ghibliapi.herokuapp.com/films")
     .then((res)=>res.json())
     .then((res)=>{
        console.log(res)
@@ -78,8 +78,25 @@ for (let w = 0;w<arrayLength;w++){
 show.addEventListener("click",(event)=>{
 event.preventDefault()
 
-fetch(`${ghibliapi.herokuapp.com/film}/${JSON.parse(window.localStorage.getItem("all"))[w]["id"]}/people/`)
+    for (let w = 0;w<arrayLength;w++){
 
+        if(movie["value"] === JSON.parse(window.localStorage.getItem("all"))[w]["title"]){
+
+            fetch(`https://ghibliapi.herokuapp.com/film/${JSON.parse(window.localStorage.getItem("all"))[w]["id"]}/people/`)
+                .then((res)=>res.json())
+                .then((res)=>{
+                    console.log(res)
+                    
+                    res.forEach(element=>{
+
+                        let person = document.createElement("li")
+                        person.innerText = element["name"]
+
+                        people.append(person)
+                    })
+                })
+            }
+    }
 })
 
 form.addEventListener("submit",(event)=>{
