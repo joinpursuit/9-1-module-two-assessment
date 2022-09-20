@@ -30,7 +30,7 @@ function run() {
         event.preventDefault();
         // console.log(event);
         filmData.forEach((element) => {
-          if (selectTitles.value === element.id) {
+          if (selectTitles.value === element.title) {
             document.querySelector("#display-info").innerHTML = `
              <h3>${element.title}</h3> 
              <p>${element.release_date}</p>
@@ -55,6 +55,8 @@ function run() {
         const list = document.createElement("li");
         list.innerHTML = `<strong>${selectTitles.value}</strong>:${event.target.review.value}`;
         ul.append(list);
+
+        form.reset();
       });
 
       const resetBtn = document.querySelector("#reset-reviews");
