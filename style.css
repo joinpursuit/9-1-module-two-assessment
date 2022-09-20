@@ -1,0 +1,38 @@
+body{
+    background-color: lavender;
+    font-family: monospace;
+    margin-top: 0;
+}
+
+header{
+    background-color: skyblue;
+    width: 75%;
+    display: flex;
+    margin-bottom: 20px;
+    margin-top: 0;
+    margin-left: 12%;
+    justify-content: space-between;
+}
+
+img{
+    width: 250px;
+}
+
+main{
+    display: grid; 
+    padding-left: 12%;
+    grid-template-rows: 1;
+    margin: auto;
+}
+
+ul{
+    list-style-type: none;
+}
+
+
+
+@media (max-width: 768px) {
+  header{
+    flex-direction: column;
+  }
+}
