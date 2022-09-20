@@ -7,7 +7,12 @@ const ul = document.querySelector('ul');
 const button = document.querySelector('#reset-reviews');
 const people = document.querySelector(`#show-people`);
 
+//! initialize fetchCall var to store the data of the initial fetch to easily access later on for other event listeners
 let fetchCall;
+
+//! initialize movie variable to retain the value of the find method
+let movie;
+
 // To ensure Cypress tests work as expected, add any code/functions that you would like to run on page load inside this function
 function run() {
   // Add code you want to run on page load here
@@ -31,25 +36,24 @@ function run() {
     })
     .catch((err) => console.log(err));
 
-  //! initialize movie variable to retain the value of the find method
-  let movie;
-
   //! select add event listener
   select.addEventListener('change', (e) => {
     e.preventDefault();
-    const callBack = fetchCall.find((e) => e.id === `${select.value}`);
-    // console.log(callBack);
+    const container1 = fetchCall.find((e) => e.id === `${select.value}`);
+    // console.log(container1);
 
-    //! grab the value of callback.title and store it in movie
-    movie = `${callBack.title}`;
+    //! grab the value of callback.title and store it in movie var
+    movie = `${container1.title}`;
+    release_date = `${container1.release_date}`;
+    description = `${container1.description}`;
     // console.log(movie);
     info.innerHTML = '';
     const h3 = document.createElement('h3');
     const p1 = document.createElement('p');
     const p2 = document.createElement('p');
-    h3.textContent = `${callBack.title}`;
-    p1.textContent = `${callBack.release_date}`;
-    p2.innerHTML = `${callBack.description}`;
+    h3.textContent = `${movie}`;
+    p1.textContent = `${release_date}`;
+    p2.innerHTML = `${description}`;
     info.append(h3, p1, p2);
   });
 
@@ -57,7 +61,6 @@ function run() {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    console.log(!`${select.value}`);
     //! Select a movie error message
     function error() {
       alert(`Please select a movie first`);
@@ -81,23 +84,35 @@ function run() {
     ul.innerHTML = '';
   });
 
-  //! people event listener
+  //! attempted people event listener, couldn't get it to work
   people.addEventListener('click', (e) => {
     e.preventDefault();
-    const second = fetchCall.find((e) => e.id === `${select.value}`);
-    // console.log(second);
+    const container2 = fetchCall.find((e) => e.id === `${select.value}`);
+    console.log(container2);
 
     people.innerHTML = '';
 
-    const characters = second.people;
+    const characters = container2.people;
+    // const characters = container2.url;
     // const characters = second.people[0];
-    console.log(characters);
+    // console.log(characters);
 
     for (let i = 0; i < characters.length; i++) {
-      const orderedList = document.createElement('ol');
-      orderedList.innerHTML = characters[i].name.value;
-      console.log(orderedList);
-      people.append(orderedList);
+      fetch(characters)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          const orderedList = document.createElement('ol');
+
+          const showPeopleInFilm = characters.find(
+            (el) => el.id === `${select.value}`
+          );
+          console.log(showPeopleInFilm);
+          orderedList.innerHTML = people[i].films.value;
+          console.log(orderedList);
+          people.append(orderedList);
+        })
+        .catch((err) => console.log(err));
     }
   });
 }
