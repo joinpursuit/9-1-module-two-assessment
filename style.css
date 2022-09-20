@@ -2,3 +2,21 @@ body {
     background-color: lavender;
     font-family: monospace;
 }
+
+header {
+    width: 75%;
+    background-color: skyblue;
+}
+
+header img {
+    width: 75%;
+    height: 25%;
+}
+
+header h1 {
+    text-align: right;
+}
+
+ul {
+    list-style: none;
+}

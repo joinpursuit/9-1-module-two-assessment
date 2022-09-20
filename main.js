@@ -11,8 +11,7 @@ function run() {
 
  const baseAPI = 'https://ghibliapi.herokuapp.com/Films'
  const dropDownMenu = document.querySelector('select')
- const reviewSection = document.querySelector('#reviews')
- const reviewInput = document.querySelectorAll('#review')
+ const form = document.querySelector('form')
 
  fetch(baseAPI)
  .then(response => response.json())
@@ -46,6 +45,34 @@ function run() {
     }) // End of change event listener.
 
    // Stuck on review part. Trying to query select the text input with the id "review" but it's not working for some reason. (Ask for help here.)
+    
+    // const reviewInput = document.querySelector('#review') // Variable for review text input and submit button is querySelectorAll. 
+    // // Don't know how to isolate them. Maybe indices?
+    // Need a variable selecting the submit button specifically to create event listener for it, but the same IDs make it tricky?
+    const reviewSection = document.querySelector('#reviews') // Variable for the actual part of the page where the reviews show up.
+    const submitButton = document.getElementsByName("submitButton") // Variable for the actual submit button.
+    console.log(submitButton)
+
+    const reviewList = document.querySelector("#reviews ul")
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault()
+
+        let reviewInput = event.target.reviewText.value
+        console.log(reviewInput)
+
+        const reviewList = document.createElement("li")
+        reviewList.innerHTML = `${reviewInput}`
+
+        if (reviewInput = "") {
+            
+        }
+
+        form.append(reviewList)
+
+        form.reset()
+    })
+    
    // Once the text input has been selected, I'm trying to grab the value that was inputted into the text input and display it on the site.
    // Once that's displayed, I want it to be saved to an unordered list of list elements with the movie title in <strong> and the text review after. 
    // I can do let writtenReview = document.createElement("li") and append that to a ul variable like let reviewList = document.querySelector("ul").
@@ -60,7 +87,7 @@ function run() {
         let listOfPeople = document.createElement("ol")
         
         for (i = 0; i < data.length; i++) {
-            if (data[i].title === event.target.value) {
+            if (data[i].title === event.target.show-people.value) {
                 let peopleNames = data[i].people
 
                 listOfPeople.append(peopleNames)
