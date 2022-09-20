@@ -4,7 +4,7 @@ let filmData;
 let film;
 let peopleData;
 
-const selectTitle = document.querySelector(`select`);
+const select = document.querySelector(`select`);
 const movieDetails = document.querySelector(`#display-info`);
 const inputReview = document.querySelector(`#review`);
 const form = document.querySelector(`form`);
@@ -25,7 +25,7 @@ function run() {
         const titleOption = document.createElement(`option`);
         titleOption.innerText = el.title;
         titleOption.setAttribute(`value`, el.id);
-        selectTitle.append(titleOption);
+        select.append(titleOption);
       });
     })
     .catch((err) => console.log(err));
@@ -38,10 +38,10 @@ function run() {
 setTimeout(run, 1000);
 
 const findFilm = () => {
-  film = filmData.find((el) => el.id === selectTitle.value);
+  film = filmData.find((el) => el.id === select.value);
 };
 
-selectTitle.addEventListener(`change`, () => {
+select.addEventListener(`change`, () => {
   movieDetails.innerHTML = ``;
   const titleFilm = document.createElement(`h3`);
   const year = document.createElement(`p`);
@@ -54,26 +54,19 @@ selectTitle.addEventListener(`change`, () => {
 
   movieDetails.append(titleFilm, year, description);
   peopleList.innerHTML = ``;
+  showPeople.innerHTML = `Show People`;
 });
 
 form.addEventListener(`submit`, (event) => {
   event.preventDefault();
-  if (!selectTitle.value) {
+  if (!select.value) {
     alert(`Please select a movie first`);
-    // other way to display error message
-    // const noFilm = document.createElement(`p`);
-    // noFilm.innerHTML = `<strong>Please select a movie fist</strong>`;
-    // form.after(noFilm);
-    // const removeErrMess = () => noFilm.remove();
-    // setTimeout(removeErrMess, 4000);
-
-    // could add another error message
-    //   } else if (!inputReview.value) {
-    // const noReview = document.createElement(`p`);
-    // noReview.innerHTML = `<strong>Please add a review</strong>`;
-    // form.after(noReview);
-    // const removeErrMess = () => noReview.remove();
-    // setTimeout(removeErrMess, 4000);
+  } else if (!inputReview.value) {
+    const noReview = document.createElement(`p`);
+    noReview.innerHTML = `<strong>Please add a review</strong>`;
+    form.after(noReview);
+    const removeErrMess = () => noReview.remove();
+    setTimeout(removeErrMess, 4000);
   } else {
     const reviewItem = document.createElement(`li`);
     reviewItem.innerHTML = `<strong>${film[`title`]}: </strong>${
@@ -96,22 +89,19 @@ fetch(baseURL + `/people`)
   .catch((err) => console.log(err));
 
 showPeople.addEventListener(`click`, () => {
-  peopleList.innerHTML = ``;
-  if (selectTitle.value) {
-    // console.log(selectTitle.value);
+  if (peopleList.innerHTML !== ``) {
+    peopleList.innerHTML = ``;
+    showPeople.innerHTML = `Show People`;
+  } else if (select.value) {
     peopleData.forEach((person) => {
       person.films.forEach((film) => {
-        if (film.includes(selectTitle.value)) {
+        if (film.includes(select.value)) {
           const character = document.createElement(`li`);
           character.innerText = person.name;
           peopleList.append(character);
+          showPeople.innerText = `Hide People`;
         }
       });
     });
-
-    // fetch(baseURL + `/items` + `?films=${baseURL}/films/${selectTitle.value}`)
-    //   .then((res) => res.json())
-    //   .then((resJson) => console.log(resJson))
-    //   .catch((err) => console.log(err));
   }
 });
