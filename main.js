@@ -8,28 +8,30 @@
 
 function run() {
 // Add code you want to run on page load here
+const dropDownSection = document.querySelector('.dropDownSection')
+const dropDownList = document.querySelector('.dropDownList')
+const dropDownOption = document.querySelector('.dropDownOption')
+const displayMovieInfo = document.querySelector('#display-info')
+const reviewForm = document.querySelector('.reviewForm')
+let reviewInputBox = document.querySelector('#review')
+
+const enteredReviews = document.querySelector('#enteredReviews')
 
 
 
     const getMovies = (movieParam) => {
         const url = 'https://ghibliapi.herokuapp.com/films'
+
         fetch(url)
             .then((response) => response.json())
             .then((data) => {
                 console.log("data = ", data)
 
-                const dropDownSection = document.querySelector('.dropDownSection')
-                const dropDownList = document.querySelector('.dropDownList')
-                const dropDownOption = document.querySelector('.dropDownOption')
-                const displayMovieInfo = document.querySelector('#display-info')
+              
                 const displayMovieHeader = document.createElement('h3')
                 const displayMoviePara1 = document.createElement('p')
                 const displayMoviePara2 = document.createElement('p')
-                const reviewForm = document.querySelector('.reviewForm')
-                let reviewInputBox = document.querySelector('#review')
 
-                const enteredReviews = document.querySelector('#enteredReviews')
-                
                
             
                 //loop through fetched movie api data to assign title info to drop down list option elements
@@ -55,27 +57,35 @@ function run() {
                     displayMoviePara2.textContent = data[index].description
 
                     displayMovieInfo.append(displayMovieHeader)
-                    displayMovieHeader.after(displayMoviePara1)
-                    displayMoviePara1.after(displayMoviePara2)
+                    displayMovieInfo.append(displayMoviePara1)
+                    displayMovieInfo.append(displayMoviePara2)
 
                 })  //end of Select event listener
-
+                   
 
                 // ** Event Listener for Review Form **
-                reviewForm.addEventListener(("submit"), (event) =>{
+
+                reviewForm.addEventListener("submit", (event) =>{
                     event.preventDefault()
-                    if(dropDownList.value === "") {
-                        let msgNoMovie = document.createElement('p')
-                        msgNoMovie.innerHTML = "Please select a movie first"
-                        msgNoMovie.setAttribute("style","font-size: 15px; color: red")
-                        msgNoMovie.classList.add('error')
-                        dropDownSection.append(msgNoMovie)
-                    } else {
+                    const alertMsg = () => {alert("Please select a movie first")}
                     const reviewItem = document.createElement('li')
+        
                     let reviewText = event.target.review.value
-                    console.log('reviewText=', reviewText)
+                    reviewItem.innerHTML = `<strong>${dropDownList.value}: </strong>${reviewText}`  
+                    if(dropDownList.value === "") {
+                       
+                        alert("Please select a movie first")
+                        // alertMsg()
+                        // let msgNoMovie = document.createElement('p')
+                        // msgNoMovie.innerHTML = "Please select a movie first"
+                        // msgNoMovie.setAttribute("style","font-size: 15px; color: red")
+                        // msgNoMovie.classList.add('error')
+                        // dropDownSection.append(msgNoMovie)
+                    } else {
+                  
+                    //console.log('reviewText=', reviewText)
                    
-                    reviewItem.innerHTML = `<strong>${dropDownList.value}: </strong>${reviewText}`  //display movie title & review
+                 //display movie title & review
                     enteredReviews.append(reviewItem)   //attach review to ordered list element
                     reviewInputBox.value = ""    //clear input field
                     }
