@@ -1,16 +1,19 @@
-body{
-   background-color: lavender; 
-   font-family: monospace;
+body {
+  display: grid;
+  background-color: lavender;
+  font-family: monospace;
+}
+header {
+  /* position: relative; */
+  vertical-align: top;
+  width: 75%;
+  background-color: skyblue;
+}
+h1 {
+  text-align: right;
+  /* vertical-align: super; */
+}
 
-}
-header{
-    border: bo;
-    width: 75%;
-    background-color: skyblue;
-}
-img{
-width: 75%;
-}
-main{
-    
+img {
+  width: 75%;
 }

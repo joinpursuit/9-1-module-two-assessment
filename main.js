@@ -79,9 +79,10 @@ function run() {
   reset.addEventListener("click", () => {
     revDisplay.innerHTML = "";
   });
-
   //* Generate an ordered List of people's name
-  // const orderedl
+  //fetch the (URL)
+  //use an array method to grab list of ppl -> forEach() 
+  
 }
 
 // This function will "pause" the functionality expected on load long enough to allow Cypress to fully load
