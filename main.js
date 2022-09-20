@@ -78,10 +78,20 @@ event.preventDefault()
 
 form.addEventListener("submit",(event)=>{
     event.preventDefault()
-
+if(movie.value===""){
+    alert("Please select a movie to review")
+}else{
     const rev = document.createElement("li")
     rev.innerText = `${review.value}`
 
     reviewList.append(rev)
     review.value = ""
+}
+})
+
+
+reset.addEventListener("click",(event)=>{
+    event.preventDefault()
+
+    reviewList.innerHTML = ""
 })
