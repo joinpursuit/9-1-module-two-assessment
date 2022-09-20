@@ -80,8 +80,6 @@ function run() {
 // So that testing can work as expected for now
 // A non-hacky solution is being researched
 
-setTimeout(run, 1000);
-
 // movie details 
 const baseURL = 'https://ghibliapi.herokuapp.com'
 const peopleURL = '/people'
@@ -118,3 +116,6 @@ select.addEventListener('change', function handleChange(event) {
     }}
 })
 }) 
+
+
+setTimeout(run, 1000);
