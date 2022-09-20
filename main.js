@@ -31,7 +31,7 @@ const selectMovie = document.getElementById("titles");
 const movies = (films) => {
   films.forEach((film) => {
     const optionTag = document.createElement("option");
-    optionTag.value = JSON.stringify(films);
+    optionTag.value = JSON.stringify(film);
     optionTag.textContent = film.title;
     selectMovie.appendChild(optionTag);
   });
@@ -48,11 +48,46 @@ const displayMovie = (film) => {
 
     const movieDescription = document.getElementById("display-info");
 
+    // h3-movie tittle
     const h3 = document.createElement("h3");
     movieDescription.appendChild(h3);
     const film = JSON.parse(
       selectMovie.options[selectMovie.selectedIndex].value
     );
-    h3.textContent = film.title;
+    h3.textContent = `${film.title}`;
+
+    // year
+    const year = document.createElement("p");
+    movieDescription.appendChild(year);
+    year.textContent = `${film.release_date}`;
+
+    // description
+    const description = document.createElement("p");
+    movieDescription.appendChild(description);
+    description.textContent = `${film.description}`;
   });
 };
+
+// EVENT LISTENER - SUBMIT BUTTON
+const form = document.getElementById("form");
+form.addEventListener("submit", (e) => {
+  const film = JSON.parse(selectMovie.options[selectMovie.selectedIndex].value);
+  e.preventDefault();
+
+  // error
+  let errText = document.getElementById("error-text");
+  let review = document.getElementById("review");
+
+  if (!film.title) {
+    const errP = document.createElement("p");
+    errP.innerText = "Please select a movie first";
+    errText.appendChild(errP);
+  // review content
+  } else {
+  const ul = document.getElementById("ul");
+  const li = document.createElement("li")
+  ul.appendChild(li)
+  li.textContent = `${film.title}: ${review.value}`
+}
+errText.innerHTML = ''
+});
