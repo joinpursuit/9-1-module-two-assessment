@@ -1,19 +1,22 @@
+* {
+    font-family: monospace;
+}
+
 body {
     background-color: lavender;
-    font-family: monospace;
 }
 
 header {
     width: 75%;
     background-color: skyblue;
-    align-items: center;
-    /* height: 100px; */
+    height: 200px;
+    padding-bottom: 50px;
 }
 
-img {
-    height: 100px;
+header img {
+    height: 200px;
 }
 
-h1 {
+ h1 {
     text-align: right;
-}
+ }
