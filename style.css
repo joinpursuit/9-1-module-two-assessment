@@ -1,0 +1,15 @@
+body {
+  background: lavender;
+  font-family: monospace;
+  /* text-align: center; */
+}
+
+header {
+  width: 75%;
+  background-color: skyblue;
+  text-align: center;
+}
+img {
+  height: 75%;
+  /* width: 100px; */
+}
