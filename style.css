@@ -1,8 +1,8 @@
-.body{
-    background-color:lavender;
-    font-family: monospace ;
+body{
+    background:lavender;
+    font-family: monospace;
 }
-.header{
-    width: 25% ;
-    background-color: skyblue;
+header{
+    width: 100% ;
+    background: skyblue;
 }
