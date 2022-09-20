@@ -1,9 +1,4 @@
 
-
-
-
-
-
 // To ensure Cypress tests work as expeded, add any code/functions that you would like to run on page load inside this function
 
 function run(){
@@ -53,20 +48,24 @@ fetch ('https://ghibliapi.herokuapp.com/films')
         if (select && user.value) {
             const shoutout = document.createElement('li')
             shoutout.innerHTML = `<strong>${select.value}:</strong> ${user.value}` 
+            shoutout.setAttribute('class','reveiwlist')
             ul.append(shoutout)  
         }
         form.reset()
     })   
     const resetReveiw = document.querySelector('#reset-reviews')
+    const resetShoutout = document.getElementsByClassName('.reveiwlist')
     // removeList = document.querySelectorAll('li')
-    // console.log(resetReveiw)
+    console.log(resetShoutout)
     resetReveiw.addEventListener('click',() => {
-        ul.remove()
+        ul.replaceChildren()
     })
 
     const showPeople = document.querySelector('#show-people')
      const peopleList = document.querySelector('ol')
         showPeople.addEventListener('click', () => {
+           peopleList.replaceChildren()
+
         for (const titles of movie) {
             if(select.value === titles.title){
                    console.log(titles.people)
