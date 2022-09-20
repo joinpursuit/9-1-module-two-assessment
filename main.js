@@ -1,3 +1,5 @@
+const { default: fetch, FetchError } = require("node-fetch");
+
 // To ensure Cypress tests work as expeded, add any code/functions that you would like to run on page load inside this function
 const form = document.querySelector("form");
 const selectTitles = document.querySelector("#titles");
@@ -7,6 +9,8 @@ const people = document.querySelector("#show-people");
 const reviews = document.querySelector("#reviews");
 const ul = document.querySelector("ul");
 const ol = document.querySelector("ol");
+const peopleUrl = "https://ghibliapi.herokuapp.com/people";
+
 function run() {
   // Add code you want to run on page load here
   fetch(`${url}`)
@@ -57,9 +61,21 @@ function run() {
       });
 
       const resetBtn = document.querySelector("#reset-reviews");
-      resetBtn.addEventListener("click", (event) => {});
+      resetBtn.addEventListener("click", (event) => {
+        const list = document.createElement("li");
+        ul.append(list);
+        list.forEach((element) => {
+          element.remove();
+        });
+      });
     })
     .catch((error) => console.log(error));
+
+  fetch()
+    .then((res) => res.json())
+    .then((resJson) => {
+      console.log(resJson);
+    });
 }
 
 // This function will "pause" the functionality expected on load long enough to allow Cypress to fully load
