@@ -95,12 +95,11 @@ function fetchPeople() {
     const submitQuery = document.querySelector("#titles").value
     const submitMovie = apiResults.find(movie => movie.title === submitQuery)
 
-    if (submitMovie.people.length === 1) {
+    if (submitMovie.people[0] === "https://ghibliapi.herokuapp.com/people/") {
         while(peopleList.firstChild) {
             peopleList.children[0].remove()
         }
     } else {
-
     for(const person of submitMovie.people) {
         fetch(person)
         .then((res) => res.json())
