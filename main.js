@@ -47,7 +47,7 @@ function run() {
 
         const review = document.querySelector("#review");
         // console.log(review);
-        if (review.value === "") {
+        if (selectTitles.value === "") {
           alert("Please select a movie first");
         }
 
