@@ -45,14 +45,14 @@ function run() {
       form.addEventListener("submit", (event) => {
         event.preventDefault();
 
-        const review = document.querySelector("#review");
-        if (review === "") {
-          alert("Please select a movie first");
-        }
+        // const review = document.querySelector("#review");
+        // if (review === "") {
+        //   window.alert("Please select a movie first!");
+        // }
         // console.log(filmData);
 
         const list = document.createElement("li");
-        list.innerHTML = `<strong>${element.title}</strong>:${event.target.review.value}`;
+        list.innerHTML = `<strong>${selectTitles}</strong>:${event.target.review.value}`;
         form.reset();
       });
 
