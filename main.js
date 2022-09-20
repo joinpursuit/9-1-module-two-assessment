@@ -46,6 +46,7 @@ select.addEventListener("change", () => {
 
   const h3 = document.createElement("h3");
   h3.innerText = findFilm.title;
+  title = findFilm.title;
   displayInfo.append(h3);
 
   const pYear = document.createElement("p");
@@ -62,13 +63,6 @@ form.addEventListener("submit", (e) => {
 
   if (select.value === "") {
     alert("Please select a movie first");
-    // const error = document.createElement("p");
-    // error.innerHTML = "Please select a movie first";
-    // error.style.color = "red";
-    // error.style.fontSize = "14px";
-    // form.append(error);
-    // select.addEventListener("change", () => {
-    //   error.innerHTML = "";
   } else {
     const li = document.createElement("li");
     li.innerHTML = `<strong>${film.title}: </strong>${textInput.value}`;
@@ -81,28 +75,38 @@ reset.addEventListener("click", () => {
   ul.innerHTML = "";
 });
 
-showPeople.addEventListener("click", () => {
-  const people = "https://ghibliapi.herokuapp.com/people";
-  fetch(people)
-    .then((data) => data.json())
-    .then((data) => {
-      //   console.log(film.people);
+// showPeople.addEventListener("click", () => {
+//   const people = "https://ghibliapi.herokuapp.com/people";
+//   fetch(people)
+//     .then((data) => data.json())
+//     .then((data) => {
+//       let filtered = film.people.forEach((mov) => {
+//         data.filter((matched) => {
+//           if (mov.people === matched.url) {
+//             const list = document.querySelector("ol");
+//             const person = document.createElement("li");
+//             person.innerText = filtered.name;
+//             ol.append(person);
+//           }
+//         });
+//       });
 
-      film.people.forEach((film, i) => {
-        for (let p = 0; p < data.length; p++) {
-          if (film.people === data[p].url) {
-            console.log(data[p].url);
-            const list = document.querySelector("ol");
-            const person = document.createElement("li");
-            person.innerText = data[p].name;
-            console.log(person);
-            list.append(person);
-          }
-        }
-      });
-    })
-    .catch((err) => console.log(err));
-});
+//       console.log(film.people);
+//   forEach((film, i) => {
+//     // for (let p = 0; p < data.length; p++) {
+//     if (film.people === data[p].url) {
+//       console.log(data[p].url);
+//       const list = document.querySelector("ol");
+//       const person = document.createElement("li");
+//       person.innerText = data[p].name;
+//       //   console.log(person);
+//       list.append(person);
+//     }
+//     // }
+//   });
+//     })
+//     .catch((err) => console.log(err));
+// });
 // });
 
 //   for (let i = 0; i < film.people; i++) {
