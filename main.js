@@ -14,9 +14,10 @@ const dropDownOption = document.querySelector('.dropDownOption')
 const displayMovieInfo = document.querySelector('#display-info')
 const reviewForm = document.querySelector('.reviewForm')
 let reviewInputBox = document.querySelector('#review')
-
 const enteredReviews = document.querySelector('#enteredReviews')
-
+const reviewResetButton = document.querySelector('#reset-reviews')
+const showPeopleButton = document.querySelector('#show-people')
+const showPeopleList = document.querySelector('.showPeopleList')
 
 
     const getMovies = (movieParam) => {
@@ -26,14 +27,12 @@ const enteredReviews = document.querySelector('#enteredReviews')
             .then((response) => response.json())
             .then((data) => {
                 console.log("data = ", data)
-
-              
+                
+                //create heading and 2 paragraph elements for movie information
                 const displayMovieHeader = document.createElement('h3')
                 const displayMoviePara1 = document.createElement('p')
                 const displayMoviePara2 = document.createElement('p')
 
-               
-            
                 //loop through fetched movie api data to assign title info to drop down list option elements
                 for(movieInfo of data) {
                     let option = document.createElement('option')
@@ -52,10 +51,13 @@ const enteredReviews = document.querySelector('#enteredReviews')
                     // console.log("selected movie rel date= ", data[index].release_date)
                     // console.log("selected movie description = ", data[index].description)
                     // console.log('index = ', index)
+                    
+                    //add movie data to appropriate elements
                     displayMovieHeader.textContent = data[index].title
                     displayMoviePara1.textContent = data[index].release_date
                     displayMoviePara2.textContent = data[index].description
 
+                    //attach elements to the div in HTML - display-info
                     displayMovieInfo.append(displayMovieHeader)
                     displayMovieInfo.append(displayMoviePara1)
                     displayMovieInfo.append(displayMoviePara2)
@@ -64,37 +66,25 @@ const enteredReviews = document.querySelector('#enteredReviews')
                    
 
                 // ** Event Listener for Review Form **
-
                 reviewForm.addEventListener("submit", (event) =>{
                     event.preventDefault()
                     const alertMsg = () => {alert("Please select a movie first")}
                     const reviewItem = document.createElement('li')
-        
                     let reviewText = event.target.review.value
                     reviewItem.innerHTML = `<strong>${dropDownList.value}: </strong>${reviewText}`  
+                    
+                    //check if movie title input is blank; if so, display alert box
                     if(dropDownList.value === "") {
-                       
                         alert("Please select a movie first")
-                        // alertMsg()
-                        // let msgNoMovie = document.createElement('p')
-                        // msgNoMovie.innerHTML = "Please select a movie first"
-                        // msgNoMovie.setAttribute("style","font-size: 15px; color: red")
-                        // msgNoMovie.classList.add('error')
-                        // dropDownSection.append(msgNoMovie)
                     } else {
-                  
-                    //console.log('reviewText=', reviewText)
-                   
-                 //display movie title & review
+                     
+                    //display movie title & review
                     enteredReviews.append(reviewItem)   //attach review to ordered list element
                     reviewInputBox.value = ""    //clear input field
                     }
                 })  // end of Review Form event listener
 
-
-
-            
-                    const reviewResetButton = document.querySelector('#reset-reviews')
+                   
                     reviewResetButton.type = "submit"
 
                 // ** Event Listener for Review Reset Button **
@@ -105,9 +95,6 @@ const enteredReviews = document.querySelector('#enteredReviews')
                 })  // end of Review Form event listener
                  
 
-                
-                    const showPeopleButton = document.querySelector('#show-people')
-                    const showPeopleList = document.querySelector('.showPeopleList')
                     showPeopleButton.type = "submit"
 
                 // ** Event Listener for Show People Button **
@@ -132,7 +119,8 @@ const enteredReviews = document.querySelector('#enteredReviews')
                             showPeopleList.append(personName)
                             })
                         }
-                       // .catch((error) => console.log(error))  //this caused error in closing brackets of main fetch, so had to commment out -as a result it creats a console error but the fetch still works - I tried to find out how to resolve the error, but do not know yet. Thanks,
+                       // .catch((error) => console.log(error))  //this caused error in closing brackets of main fetch, so had to commment out -as a result it creats a console error but the fetch still works - I tried to find out how to resolve the error, but do not know yet. Thanks.
+                       
                     }) // end of Show People Button event listener
 
                    
