@@ -27,7 +27,7 @@ function run() {
                 const displayMoviePara2 = document.createElement('p')
                 const reviewForm = document.querySelector('.reviewForm')
                 let reviewInputBox = document.querySelector('#review')
-                const reviewItem = document.createElement('li')
+
                 const enteredReviews = document.querySelector('#enteredReviews')
                 
                
@@ -71,11 +71,11 @@ function run() {
                         msgNoMovie.classList.add('error')
                         dropDownSection.append(msgNoMovie)
                     } else {
-
+                    const reviewItem = document.createElement('li')
                     let reviewText = event.target.review.value
                     console.log('reviewText=', reviewText)
                    
-                    reviewItem.innerHTML = `<strong> ${dropDownList.value}: </strong> ${reviewText}`  //display movie title & review
+                    reviewItem.innerHTML = `<strong> ${dropDownList.value}: </strong>` +  `${reviewText}`  //display movie title & review
                     enteredReviews.append(reviewItem)   //attach review to ordered list element
                     reviewInputBox.value = ""    //clear input field
                     }
@@ -106,9 +106,9 @@ function run() {
                        }
                     let index = data.findIndex(movie => movie.title === dropDownList.value)
                     let totalPersons = data.length
-                    let personName = document.createElement('li')
-                        for (let i = 0; i <= totalPersons; i++){
-                        console.log(data[index].people[i])
+                   
+                        for (let i = 0; i < totalPersons; i++){
+                       // console.log(data[index].people[i])
                         let url2 =`${data[index].people[i]}`
                         fetch(url2)
                             .then((response) => response.json())

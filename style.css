@@ -4,17 +4,24 @@ body{
 }
 
 header{
+    display: grid;
+    grid-template-columns: 2;
+    grid-template-rows: 1;
     width: 75%;
     background-color: skyblue;
 }
 img{
     height: 30px;
     width: 20vw;
+    grid-column: 1/1;
+    grid-row: 1;
 }
 
 h1{
     display: inline-block;
     margin-left: 20vw ;
+    grid-column: 2/2;
+    grid-row: 1;
 }
 .reset-reviews{
     width: 25px;
