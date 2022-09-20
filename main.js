@@ -1,7 +1,6 @@
 const url = "https://ghibliapi.herokuapp.com/films"
 const URL = "https://ghibliapi.herokuapp.com/people"
 const select = document.querySelector('select')
-//this might be dropdown if it doesn't work
 const ul = document.querySelector('ul')
 const display = document.querySelector('#display-info')
 const review = document.querySelector('#review')
@@ -41,21 +40,15 @@ function run() {
         event.preventDefault()
         const input = event.target.review.value
         const li = document.createElement('li')
+        li.classList.add('test')
         let movies = select.value
-
         if(movies === ""){
             alert('Please select a movie first')
         }else{
-            data.find(name =>{
-                return name.id === movies
-            })
-            //THIS MIGHT HAVE TO BE ITS OWN FUNCTION
             li.innerHTML = `<strong><b>${movies}</b></strong>: ${input}`
                 ul.append(li)
                 event.target.reset()
         }
-    
-        form.reset();
     });
     
  })
@@ -63,22 +56,13 @@ function run() {
  .catch(error =>{
     console.log(error)
  });
- 
- //EVENT LISTENERS MIGHT HAVE TO BE OUTSIDE CODE
-   
-
-    // select.addEventListener('change', (event) =>{
-    //     event(preventDefault)()
-       
-    // })
-
-   
-    
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (event) => {
+        event.preventDefault()
          ul.innerHTML = '';
       });
 }
-function testing(){
+
+function getPeople(){
 fetch(URL)
  .then(response => response.json())
  .then(peopleData => {
@@ -97,12 +81,8 @@ fetch(URL)
 } 
 showPeople.addEventListener('click', (event) =>{
     event.preventDefault()
-    testing()
+    getPeople()
 })
-
-
-// CODE NOT WORKING. WHEN SOMETHING IS POPULATED TRY TO REVAMP. IF Not Working Keep to ask why. 
-
 
 // This function will "pause" the functionality expected on load long enough to allow Cypress to fully load
 // So that testing can work as expected for now
