@@ -19,8 +19,12 @@ reviewForm.addEventListener('submit', event=> {
     const review = document.createElement('li')
     
     //checking for a value selected
-    if(!select.options[select.selectedIndex].value){
+    if(!select.options[select.selectedIndex].value && reviewInput){
         alert('Please select a movie first')
+    }
+    // checking for an input
+    if(!reviewInput){
+        alert('Please enter your review before submitted')
     }
 
     review.value = title
