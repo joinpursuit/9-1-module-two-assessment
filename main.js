@@ -14,7 +14,7 @@ function run() {
   fetch(`${url}`)
     .then((res) => res.json())
     .then((resJson) => {
-      console.log(resJson);
+      //   console.log(resJson);
       const filmData = resJson;
       filmData.forEach((element) => {
         const option = document.createElement("option");
@@ -22,7 +22,7 @@ function run() {
         // console.log(titleNames);
         // console.log(element.id);
         option.textContent = titleNames;
-        option.value = element.id;
+        option.value = element.title;
         selectTitles.append(option);
       });
 
@@ -45,15 +45,16 @@ function run() {
       form.addEventListener("submit", (event) => {
         event.preventDefault();
 
-        // const review = document.querySelector("#review");
-        // if (review === "") {
-        //   window.alert("Please select a movie first!");
-        // }
+        const review = document.querySelector("#review");
+        console.log(review);
+        if (review.value === "") {
+          alert("Please select a movie first");
+        }
         // console.log(filmData);
 
         const list = document.createElement("li");
-        list.innerHTML = `<strong>${selectTitles}</strong>:${event.target.review.value}`;
-        form.reset();
+        list.innerHTML = `<strong>${selectTitles.value}</strong>:${event.target.review.value}`;
+        ul.append(list);
       });
 
       const resetBtn = document.querySelector("#reset-reviews");
