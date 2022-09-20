@@ -53,7 +53,7 @@ function run() {
         // console.log(filmData);
 
         const list = document.createElement("li");
-        list.innerHTML = `<strong>${selectTitles.value}</strong>:${event.target.review.value}`;
+        list.innerHTML = `<strong>${selectTitles.value}: </strong>${event.target.review.value}`;
         ul.append(list);
 
         form.reset();
