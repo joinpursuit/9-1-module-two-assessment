@@ -2,6 +2,8 @@ body {
   display: grid;
   background-color: lavender;
   font-family: monospace;
+   padding: 0px;
+    margin: 0px;
 }
 header {
   /* position: relative; */
@@ -10,8 +12,9 @@ header {
   background-color: skyblue;
 }
 h1 {
-  text-align: right;
+  /* text-align: right; */
   /* vertical-align: super; */
+  float: right;
 }
 
 img {
