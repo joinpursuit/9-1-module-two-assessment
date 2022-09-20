@@ -54,19 +54,21 @@ function run() {
         list.innerHTML = `<strong>${name}: </strong>${reviewVal}`;
         const ul = document.querySelector('ul') 
         ul.append(list);
-        // clears input after submission of review
-        form.reset();
+        
         
         // resets the reviews (empties the ul content)
         const button = document.querySelector('#reset-reviews')
         button.addEventListener('click', () => {
             ul.innerHTML = ''
         }); 
-
+        
         // error (alert) if review was submitted WITHOUT selecting a film
         if(select.value === ''){
             window.alert(`Please select a movie first`)
-        }; 
+        };
+        
+        // clears input after submission of review
+        form.reset();
     })
 };
 
