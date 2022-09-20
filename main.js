@@ -94,8 +94,13 @@ resetButton.addEventListener("click", (event) => {
 function fetchPeople() {
     const submitQuery = document.querySelector("#titles").value
     const submitMovie = apiResults.find(movie => movie.title === submitQuery)
-    // Test suite only passes when I add in the fetch call on the below line.
-    fetch("https://ghibliapi.herokuapp.com/people").then().then()
+
+    if (submitMovie.people.length === 1) {
+        while(peopleList.firstChild) {
+            peopleList.children[0].remove()
+        }
+    } else {
+
     for(const person of submitMovie.people) {
         fetch(person)
         .then((res) => res.json())
@@ -105,22 +110,14 @@ function fetchPeople() {
             peopleList.append(name)
         })
     }
+}
 } 
-// This function passes but doesnt really work
-// function fetchPeople() {
-//     fetch("https://ghibliapi.herokuapp.com/people")
-//     .then((res) => res.json())
-//     .then((people) => {
-//         for(const person of people) {
-//             const name = document.createElement("li")
-//             name.innerHTML = person.name
-//             peopleList.append(name)
-//         }
-//     })
-// } 
+
 peopleButton.addEventListener("click", (event) => {
     event.preventDefault()
-
+    while(peopleList.firstChild) {
+        peopleList.children[0].remove()
+    }
     fetchPeople()
 })
 
