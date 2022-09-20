@@ -1,0 +1,21 @@
+*{
+    margin: 5px;
+}
+body{
+    background-color: lavender;
+    font-family: monospace;
+}
+header{
+    background-color: skyblue;
+    width: 70%;
+}
+
+img{
+    width: 70%;
+}
+h1{
+    text-align:right;
+    font-size: 2rem;
+    margin: 5px;
+    
+}
