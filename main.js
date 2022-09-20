@@ -46,7 +46,7 @@ function run() {
         event.preventDefault();
 
         const review = document.querySelector("#review");
-        console.log(review);
+        // console.log(review);
         if (review.value === "") {
           alert("Please select a movie first");
         }
@@ -66,16 +66,24 @@ function run() {
     })
     .catch((error) => console.log(error));
 
-  // fetch(`${peopleUrl}`)
-  //     .then((res) => res.json())
-  //     .then((resJson2) => {
-  //       console.log(resJson2);
-  //       const peopleData = resJson2;
-  //       people.addEventListener("click", (event) => {
-  //         peopleData.forEach((element) => {});
-  //       });
-  //     })
-  //     .catch((error) => console.log(error));
+  fetch(`${peopleUrl}`)
+    .then((res) => res.json())
+    .then((resJson2) => {
+      console.log(resJson2);
+      const peopleData = resJson2;
+      people.addEventListener("click", (event) => {
+        let peoplename = [];
+        peopleData.forEach((element) => {
+          //   console.log(element.id);
+          //   console.log(element.films);
+          if (element.films[0].includes(element.id)) {
+            document.createElement("li").innerHTML = `${element.name}`;
+            ol.append(li);
+          }
+        });
+      });
+    })
+    .catch((error) => console.log(error));
 }
 
 // This function will "pause" the functionality expected on load long enough to allow Cypress to fully load
