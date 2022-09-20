@@ -1,4 +1,5 @@
 const url = "https://ghibliapi.herokuapp.com/films"
+const URL = "https://ghibliapi.herokuapp.com/people"
 const select = document.querySelector('select')
 //this might be dropdown if it doesn't work
 const ul = document.querySelector('ul')
@@ -6,18 +7,14 @@ const display = document.querySelector('#display-info')
 const review = document.querySelector('#review')
 const button = document.querySelector('#reset-reviews')
 const form = document.querySelector('form')
-
-let allow
-//Save in case doing carlos call back thingy
-let reviews = review.value
-
+const showPeople = document.querySelector('#show-people')
+const ol = document.querySelector('ol')
 
 function run() {
  fetch(url)
  .then((res) => res.json())
  .then((data) => {
-    // allow = data
-    //erase if anything
+   
     data.forEach((movie) =>{
         let option = document.createElement('option')
         option.value = movie.title
@@ -47,12 +44,12 @@ function run() {
         let movies = select.value
 
         if(movies === ""){
-            event.preventDefault()
             alert('Please select a movie first')
         }else{
             data.find(name =>{
                 return name.id === movies
             })
+            //THIS MIGHT HAVE TO BE ITS OWN FUNCTION
             li.innerHTML = `<strong><b>${movies}</b></strong>: ${input}`
                 ul.append(li)
                 event.target.reset()
@@ -61,29 +58,47 @@ function run() {
         form.reset();
     });
     
-    
  })
+   
  .catch(error =>{
     console.log(error)
  });
  
  //EVENT LISTENERS MIGHT HAVE TO BE OUTSIDE CODE
    
-    
 
     // select.addEventListener('change', (event) =>{
     //     event(preventDefault)()
        
     // })
+
+   
     
     button.addEventListener('click', () => {
          ul.innerHTML = '';
       });
 }
+function testing(){
+fetch(URL)
+ .then(response => response.json())
+ .then(peopleData => {
 
- 
-
-
+    for(i = 0; peopleData.length; i++){
+        const people = document.createElement('li')
+        people.innerHTML = peopleData[i].name
+        ol.append(people)
+    }
+    
+ })
+   
+ .catch(error =>{
+    console.log(error)
+ });
+} 
+showPeople.addEventListener('click', (event) =>{
+    event.preventDefault()
+    testing()
+})
 
 
 // CODE NOT WORKING. WHEN SOMETHING IS POPULATED TRY TO REVAMP. IF Not Working Keep to ask why. 
