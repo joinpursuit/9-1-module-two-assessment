@@ -56,7 +56,7 @@ function run() {
         list.innerHTML = `<strong>${selectTitles.value}: </strong>${event.target.review.value}`;
         ul.append(list);
 
-        form.rest();
+        form.reset();
       });
 
       const resetBtn = document.querySelector("#reset-reviews");
