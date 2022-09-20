@@ -1,5 +1,3 @@
-const { default: fetch, FetchError } = require("node-fetch");
-
 // To ensure Cypress tests work as expeded, add any code/functions that you would like to run on page load inside this function
 const form = document.querySelector("form");
 const selectTitles = document.querySelector("#titles");
@@ -52,30 +50,29 @@ function run() {
           alert("Please select a movie first");
         }
         // console.log(filmData);
-        filmData.foreach((element) => {
-          const list = document.createElement("li");
-          list.innerHTML = `<strong>${element.title}</strong>:${event.target.review.value}`;
-          ul.append(list);
-        });
+
+        const list = document.createElement("li");
+        list.innerHTML = `<strong>${element.title}</strong>:${event.target.review.value}`;
         form.reset();
       });
 
       const resetBtn = document.querySelector("#reset-reviews");
       resetBtn.addEventListener("click", (event) => {
-        const list = document.createElement("li");
-        ul.append(list);
-        list.forEach((element) => {
-          element.remove();
-        });
+        document.querySelector("ul").remove();
       });
     })
     .catch((error) => console.log(error));
 
-  fetch()
-    .then((res) => res.json())
-    .then((resJson) => {
-      console.log(resJson);
-    });
+  // fetch(`${peopleUrl}`)
+  //     .then((res) => res.json())
+  //     .then((resJson2) => {
+  //       console.log(resJson2);
+  //       const peopleData = resJson2;
+  //       people.addEventListener("click", (event) => {
+  //         peopleData.forEach((element) => {});
+  //       });
+  //     })
+  //     .catch((error) => console.log(error));
 }
 
 // This function will "pause" the functionality expected on load long enough to allow Cypress to fully load
