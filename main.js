@@ -26,6 +26,18 @@ fetch(BASE_URL)
         option.textContent = e.title;
         option.value = e.id;
         dropdown.append(option);
+        dropdown.addEventListener('change', (event)=>{
+            event.preventDefault();
+            const pickedID =event.target.value
+            for(let movie of json){
+                if (pickedID === movie.id){
+                    info.textContent = ''
+                    const h3 =document.createElement('h3');
+                    info.prepend(h3);
+                    h3.textContent = movie.title;
+                }
+            }
+        })
     }
 })
 .catch((error) => {
