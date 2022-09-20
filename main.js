@@ -101,6 +101,9 @@ function run() {
                 // ** Event Listener for Show People Button **
                 showPeopleButton.addEventListener(("click"), (event) =>{
                     event.preventDefault()
+                    if(document.querySelector(".personListItem")){
+                        document.querySelector(".personListItem").remove() 
+                       }
                     let index = data.findIndex(movie => movie.title === dropDownList.value)
                     let totalPersons = data.length
                     let personName = document.createElement('li')
@@ -111,12 +114,13 @@ function run() {
                             .then((response) => response.json())
                             .then((personData) => {
                             let personName = document.createElement('li')
+                            personName.classList.add("personListItem")
                             console.log("person data = ", personData.name)
                             personName.textContent = personData.name
                             showPeopleList.append(personName)
                             })
                         }
-                       // .catch((error) => console.log(error))
+                       // .catch((error) => console.log(error))  //this caused error in closing brackets of main fetch, so had to commment out -as a result it creats a console error but the fetch still works - I tried to find out how to resolve the error, but do not know yet. Thanks,
                     }) // end of Show People Button event listener
 
                    
