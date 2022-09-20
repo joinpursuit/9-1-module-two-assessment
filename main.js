@@ -8,17 +8,18 @@ const form = document.querySelector("form")
 const reviewList = document.querySelector("ul")
 const review = document.querySelector("#review")
 
+let arrayLength = 0
 
 // To ensure Cypress tests work as expeded, add any code/functions that you would like to run on page load inside this function
 
 function run() {
-    fetch("https://ghibliapi.herokuapp.com/films")
+    fetch("ghibliapi.herokuapp.com/films")
     .then((res)=>res.json())
     .then((res)=>{
        console.log(res)
        
        
-       let i  = 0
+      
        res.forEach(element =>
          {
            const opt = document.createElement("option")
@@ -27,12 +28,13 @@ function run() {
            
    
              movie.appendChild(opt)
-   
-           i++ 
+            
+             
+           arrayLength++
        });
    
        window.localStorage.setItem('all',JSON.stringify(res))
-       
+      
    })
     .catch((error) => console.log(error))
  // Add code you want to run on page load here
@@ -42,12 +44,15 @@ function run() {
 // So that testing can work as expected for now
 // A non-hacky solution is being researched
 
-setTimeout(run, 1500);
+setTimeout(run, 1000);
 
 
 function addMovie(){
-        
-    for (let w = 0;w<JSON.parse(window.localStorage.getItem("all")).length;w++){
+
+// console.log(arrayLength)
+   
+for (let w = 0;w<arrayLength;w++){
+// console.log(JSON.parse(window.localStorage.getItem("all"))[1]["title"])
 
         if(movie["value"] === JSON.parse(window.localStorage.getItem("all"))[w]["title"]){
             // console.log(movie.innerText)
@@ -73,6 +78,7 @@ function addMovie(){
 show.addEventListener("click",(event)=>{
 event.preventDefault()
 
+fetch(`${ghibliapi.herokuapp.com/film}/${JSON.parse(window.localStorage.getItem("all"))[w]["id"]}/people/`)
 
 })
 
@@ -80,9 +86,10 @@ form.addEventListener("submit",(event)=>{
     event.preventDefault()
 if(movie.value===""){
     alert("Please select a movie to review")
+    
 }else{
     const rev = document.createElement("li")
-    rev.innerText = `${review.value}`
+    rev.innerHTML = `<strong>${movie["value"]}</strong>: ${review.value}`
 
     reviewList.append(rev)
     review.value = ""
