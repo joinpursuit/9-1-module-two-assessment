@@ -7,10 +7,10 @@ const review = document.querySelector('#review')
 const button = document.querySelector('#reset-reviews')
 const form = document.querySelector('form')
 
-// let allow
+let allow
 //Save in case doing carlos call back thingy
 let reviews = review.value
-let movies = select.value
+
 
 function run() {
  fetch(url)
@@ -20,14 +20,12 @@ function run() {
     //erase if anything
     data.forEach((movie) =>{
         let option = document.createElement('option')
-        let id = movie.id
         option.value = movie.title
         option.innerHTML = movie.title
         select.append(option)
 
         select.addEventListener('change', (event) =>{
-            option.value = id
-            if(event.target.value === id){
+            if(event.target.value === option.value){
                 display.innerHTML =''
                 const title = document.createElement('h3')
                 const date = document.createElement('p')
@@ -41,6 +39,28 @@ function run() {
             }
         })
     })
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault()
+        const input = event.target.review.value
+        const li = document.createElement('li')
+        let movies = select.value
+
+        if(movies === ""){
+            event.preventDefault()
+            alert('Please select a movie first')
+        }else{
+            data.find(name =>{
+                return name.id === movies
+            })
+            li.innerHTML = `<strong><b>${movies}</b></strong>: ${input}`
+                ul.append(li)
+                event.target.reset()
+        }
+    
+        form.reset();
+    });
+    
     
  })
  .catch(error =>{
@@ -49,22 +69,7 @@ function run() {
  
  //EVENT LISTENERS MIGHT HAVE TO BE OUTSIDE CODE
    
-    form.addEventListener('submit', (event) => {
-        event.preventDefault()
-        const li = document.createElement('li')
-        li.innerHTML = `<strong><b>${select.value}</b></strong>: ${review.value}`
-        ul.append(li)
-        if(!movies){
-            alert('Please select a movie first')
-        }else{
-            li.innerHTML =`<b>${movieName.innerText}.</b>: ${review.value}`
-        }
-        if(!reviews){
-            alert('Please input a review')
-        }
-        //NOT WORKING Figure out what to put here later 
-        form.reset();
-    });
+    
 
     // select.addEventListener('change', (event) =>{
     //     event(preventDefault)()
