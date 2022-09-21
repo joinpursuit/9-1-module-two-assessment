@@ -11,9 +11,6 @@ function run() {
 
 const url = "https://ghibliapi.herokuapp.com/films"
 const url2 = "https://ghibliapi.herokuapp.com/people"
-const method =`https://ghibliapi.herokuapp.com/people/598f7048-74ff-41e0-92ef-87dc1ad980a9`
-
-console.log(method.slice(39, 75))
 
 const section = document.querySelector("#titles")
 
@@ -28,7 +25,7 @@ const reset = document.querySelector("#reset-reviews")
 const error = document.querySelector(".error")
 
 const show = document.querySelector("#show-people")
-console.log(show)
+
 
 fetch(url)
 .then((res) => res.json())
@@ -49,7 +46,6 @@ fetch(url)
 
 
 section.addEventListener("change", () => {
-    
     fetch(`${url}/${section.value}`)
     .then((res) => res.json())
     .then((resJson) => {
@@ -64,33 +60,27 @@ section.addEventListener("change", () => {
         const detail = resJson.description
         
         p2.innerHTML = detail
-
+        
         const value = section.value
-
-    show.addEventListener("click", () => {
-        fetch(url2)
-        .then((res) => res.json())
-        .then((resJson) => {
-            for(let i = 0; i < resJson.length; i++){
-                const name = resJson[i].name
-                for(let j = 0; j < resJson[i].films.length; j++){
-                     const films = resJson[i].films[j].slice(38, 75)
-                     const array = films.split(",")
-                    const newArray = [...array]
-                    if(newArray.includes(value)){
+        show.addEventListener("click", () => {
+            const ol = document.querySelector("ol")
+            ol.innerHTML = ""
+            fetch(url2)
+            .then((res) => res.json())
+            .then((resJson) => {
+                resJson.forEach((res) => {
+                    const name = res.name
+                    if(res.films.includes(`${url}/${section.value}`)){
                         makeList(name)
                     }
-                        
-                     
-                }
-            }
+                })
+            })
+            .catch((error) => console.log(error))
         })
-        .catch((error) => console.log(error))
-    })
-        
     })
     .catch((error) => console.log(error))
 })
+
 
 
 form.addEventListener("submit", (event) => {
@@ -119,6 +109,7 @@ form.addEventListener("submit", (event) => {
 
 function addList(reviews, title){
     const li = document.createElement("li")
+    li.setAttribute("class", "unorder")
     const strong = document.createElement("strong")
         
         if(title){
@@ -139,7 +130,7 @@ function addList(reviews, title){
 
     reset.addEventListener("click", () => {
         const unorder = document.querySelector("ul")
-    const list = document.querySelectorAll("li")
+    const list = document.querySelectorAll(".unorder")
     list.forEach((li) => {
         
         unorder.removeChild(li)
@@ -148,11 +139,10 @@ function addList(reviews, title){
 
 function getList(name){
     const li = document.createElement("li")
-    
-        
+       
         if(name){
-            
-            li.textContent = name
+           
+            li.innerHTML = name
         }
         return li
     }
@@ -160,7 +150,7 @@ function getList(name){
     function makeList(name){
         const li = getList(name);
         const ol = document.querySelector("ol");
-        
+
         ol.append(li)
     }
 
