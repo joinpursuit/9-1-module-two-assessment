@@ -6,12 +6,16 @@ const review = document.querySelector('#review');
 const ul = document.querySelector('ul');
 const button = document.querySelector('#reset-reviews');
 const people = document.querySelector(`#show-people`);
+const ol = document.querySelector('ol');
 
 //! initialize fetchCall var to store the data of the initial fetch to easily access later on for other event listeners
 let fetchCall;
 
 //! initialize movie variable to retain the value of the find method
 let movie;
+
+//! initialize id var to retain the value of the id to use later in people event listener
+let id;
 
 // To ensure Cypress tests work as expected, add any code/functions that you would like to run on page load inside this function
 function run() {
@@ -26,8 +30,8 @@ function run() {
       for (let i = 0; i < data.length; i++) {
         const name = data[i].title;
         // console.log(name);
-        const id = data[i].id;
-        // console.log(id);
+        id = data[i].id;
+        console.log(id);
         const createOpt = document.createElement('option');
         createOpt.textContent = name;
         createOpt.value = id;
@@ -85,35 +89,56 @@ function run() {
   });
 
   //! attempted people event listener, couldn't get it to work
+  // people.addEventListener('click', (e) => {
+  //   e.preventDefault();
+  //   const container2 = fetchCall.find((e) => e.id === `${select.value}`);
+  //   console.log(container2);
+
+  //   people.innerHTML = '';
+
+  //   const characters = container2.people;
+  // const characters = container2.url;
+  // const characters = second.people[0];
+  // console.log(characters);
+
+  // for (let i = 0; i < characters.length; i++) {
+  //   fetch(characters)
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         console.log(data);
+  //         const orderedList = document.createElement('ol');
+
+  //         const showPeopleInFilm = characters.find(
+  //           (el) => el.id === `${select.value}`
+  //         );
+  //         console.log(showPeopleInFilm);
+  //         orderedList.innerHTML = people[i].films.value;
+  //         console.log(orderedList);
+  //         people.append(orderedList);
+  //       })
+  //       .catch((err) => console.log(err));
+  //   }
+  // });
+
+  //! Carlos'review answer
   people.addEventListener('click', (e) => {
-    e.preventDefault();
-    const container2 = fetchCall.find((e) => e.id === `${select.value}`);
-    console.log(container2);
-
-    people.innerHTML = '';
-
-    const characters = container2.people;
-    // const characters = container2.url;
-    // const characters = second.people[0];
-    // console.log(characters);
-
-    for (let i = 0; i < characters.length; i++) {
-      fetch(characters)
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          const orderedList = document.createElement('ol');
-
-          const showPeopleInFilm = characters.find(
-            (el) => el.id === `${select.value}`
-          );
-          console.log(showPeopleInFilm);
-          orderedList.innerHTML = people[i].films.value;
-          console.log(orderedList);
-          people.append(orderedList);
-        })
-        .catch((err) => console.log(err));
-    }
+    ol.innerHTML = '';
+    fetch(`https://ghibliapi.herokuapp.com/people`)
+      .then((res) => res.json())
+      .then((data) => {
+        data.forEach((person) => {
+          if (
+            person.films[0] === `https://ghibliapi.herokuapp.com/films/${id}`
+          ) {
+            // if(person.films.includes(`https://ghibliapi.herokuapp.com/films/${id}`))
+            const li = document.createElement('li');
+            li.innerText = person.name;
+            console.log(person.name);
+            ol.append(li);
+          }
+        });
+      })
+      .catch((err) => console.log(err));
   });
 }
 
