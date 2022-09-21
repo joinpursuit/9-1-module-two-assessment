@@ -56,32 +56,28 @@ function run() {
         event.preventDefault()
 
         
-        let reviewInput = event.target.reviewText.value
-        const reviewList = document.createElement("li")
-        reviewList.innerHTML = `${reviewInput}`
+        let movieName = document.getElementById('titles')
+        let movieTitleName = movieName.options[movieName.selectedIndex].value
         
-        form.append(reviewList)
+            console.log(movieTitleName)
+            let reviewInput = event.target.reviewText.value
+            const reviewList = document.createElement("li")
+            reviewList.innerHTML = `<strong>${movieTitleName}</strong>: ${reviewInput}`
+            form.append(reviewList)
         
-        // for (let i = 0; i < data.length; i++) {
-        //     let movieName = document.getElementById('titles')
-        //     // let movieTitleName = movieName.options[movieName[i]].value
-        //     console.log(movieTitleName)
-        // }
-
         // Use value in option to get movie name to display next to review. If option value = "" then display alert error.
         form.reset()
     })
 
     const resetButton = document.querySelector('#reset-reviews')
-    const reviewList2 = document.querySelector("form ul") // Selects the list of reviews. Need to find a way to make this reset in the event listener.
+    let form2 = document.querySelector("form ul") // Selects the list of reviews. Need to find a way to make this reset in the event listener.
 
-    console.log(reviewList2)
+    // console.log(form2)
     // console.log(resetButton)
 
     resetButton.addEventListener("click", (event) => {
         event.preventDefault()
-        console.log("test") // Testing event listener.
-        form.reset()
+        console.log("reset test") // Testing event listener.
     })
     
    // Once that's displayed, I want it to be saved to an unordered list of list elements with the movie title in <strong> and the text review after. 
