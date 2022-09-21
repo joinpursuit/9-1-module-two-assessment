@@ -67,7 +67,7 @@ function run() {
         
         // Use value in option to get movie name to display next to review. If option value = "" then display alert error.
         form.reset()
-        
+
         if (movieTitleName === "") {
             alert(`Please select a movie first`)
         }
@@ -76,10 +76,8 @@ function run() {
     const resetButton = document.querySelector('#reset-reviews')
     let form2 = document.querySelector("form ul") // Selects the list of reviews. Need to find a way to make this reset in the event listener.
 
-    // console.log(form2)
-    // console.log(resetButton)
-
     resetButton.addEventListener("click", (event) => {
+        form2.remove()
         event.preventDefault()
         console.log("reset test") // Testing event listener.
     })
