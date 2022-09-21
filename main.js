@@ -16,7 +16,6 @@ function run() {
  fetch(baseAPI)
  .then(response => response.json())
  .then(data => {
-    // console.log(data)
 
     for (let i = 0; i < data.length; i++) {
         let newOption = document.createElement('option')
@@ -32,7 +31,6 @@ function run() {
     const movieDetails = document.querySelector("#display-info")
 
     dropDownMenu.addEventListener("change", (event) => {
-        // console.log("change") // Test to check change event listener.
 
         event.preventDefault()
 
@@ -48,7 +46,6 @@ function run() {
 
     const reviewSection = document.querySelector('#reviews') // Variable for the actual part of the page where the reviews show up.
     const submitButton = document.getElementsByName("submitButton") // Variable for the actual submit button.
-    // console.log(submitButton)
 
     const reviewList = document.querySelector("#reviews ul")
 
@@ -65,9 +62,9 @@ function run() {
         reviewList.innerHTML = `<strong>${movieTitleName}</strong>: ${reviewInput}`
         form.append(reviewList)
         
-        // Use value in option to get movie name to display next to review. If option value = "" then display alert error.
         form.reset()
-
+        
+        // Use value in option to get movie name to display next to review. If option value = "" then display alert error.
         if (movieTitleName === "") {
             alert(`Please select a movie first`)
 
@@ -82,10 +79,6 @@ function run() {
         event.preventDefault()
         console.log("reset test") // Testing event listener.
     })
-    
-   // Error message of "Please select a movie" should come up when a user tries to leave a review without selecting a movie. 
-   // This can be something like "if (the value of the movie in the dropdown menu !== or equal to nothing, then display error." Something like that.)
-
  }) // End of .then with data in it.
 } // End of function. Do not go past this.
 
