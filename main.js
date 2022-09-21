@@ -70,35 +70,21 @@ function run() {
 
         if (movieTitleName === "") {
             alert(`Please select a movie first`)
+
         }
     })
-
+    
     const resetButton = document.querySelector('#reset-reviews')
     let form2 = document.querySelector("form ul") // Selects the list of reviews. Need to find a way to make this reset in the event listener.
 
     resetButton.addEventListener("click", (event) => {
-        form2.remove()
+        reviewList.remove()
         event.preventDefault()
         console.log("reset test") // Testing event listener.
     })
     
    // Error message of "Please select a movie" should come up when a user tries to leave a review without selecting a movie. 
    // This can be something like "if (the value of the movie in the dropdown menu !== or equal to nothing, then display error." Something like that.)
-
-    // const getPeopleButton = document.querySelector("#show-people")
-    
-    // getPeopleButton.addEventListener("click", (event) => {
-    //     let listOfPeople = document.createElement("ol")
-        
-    //     for (i = 0; i < data.length; i++) {
-    //         if (data[i].title === event.target.show-people.value) {
-    //             let peopleNames = data[i].people
-
-    //             listOfPeople.append(peopleNames)
-    //         }
-    //     } // Trying to make it so whatever movie you click, if whatever title you click equals to that index in the data, take the names of the people
-    //     // And append them to the ol element. Still confused idk, I need sleep.
-    // })
 
  }) // End of .then with data in it.
 } // End of function. Do not go past this.
