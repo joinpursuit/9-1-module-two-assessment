@@ -1,0 +1,23 @@
+body {
+    background-color: lavender;
+    font-family: monospace;
+}
+
+header {
+    width: 75%;
+    background-color: skyblue;
+}
+
+header img {
+    width: 75%;
+    height: 25%;
+}
+
+header h1 {
+    text-align: right;
+}
+
+#reviews li {
+    font-family: 'Times New Roman', Times, serif;
+    list-style: none;
+}
