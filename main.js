@@ -51,6 +51,7 @@ function run() {
           alert("Please select a movie first");
         }
 
+        //
         // console.log(filmData);
 
         const list = document.createElement("li");
