@@ -31,42 +31,14 @@ function run() {
     })
     .catch((err) => console.log(err));
 
-  //toDO: show people in the movie
-  const peopleButton = document.querySelector("#show-people");
-  const ol = document.querySelector("ol");
-  ol.innerHTML = "";
-  peopleButton.addEventListener("click", () => {
-    fetch(`${PEOPLE_URL}`)
-      .then((res) => res.json())
-      .then((resJson) => {
-        // console.log(resJson);
-        // people = resJson;
-        for (let k = 0; k < resJson.length; k++) {
-          const element = resJson[k].id;
-          const characters = resJson[k].name;
-          //   console.log(element);
-          //   console.log(characters);
-          console.log(filmId);
-          const liPeople = document.createElement("li");
-          if (element === filmId) {
-            liPeople.innerHTML = characters;
-            ol.append(liPeople);
-          }
-        }
-        // console.log(ol);
-      })
-      .catch((err) => console.log(err));
-  });
-
   //! This will give a single film
   //toDO: BASE_URL + /{id}
   //! Each time a user select a movie title, the page should display these info in div
 
   let title;
+  let callMovies;
   select.addEventListener("change", () => {
-    const callMovies = movies.find(
-      (element) => element.id === `${select.value}`
-    );
+    callMovies = movies.find((element) => element.id === `${select.value}`);
     title = callMovies.title;
     div.innerHTML = "";
 
@@ -116,6 +88,31 @@ function run() {
       ul.innerHTML = "";
     });
   });
+
+  //toDO: show people in the movie
+  const peopleButton = document.querySelector("#show-people");
+  const ol = document.querySelector("ol");
+
+  peopleButton.addEventListener("click", () => {
+    ol.innerHTML = "";
+    fetch(`https://ghibliapi.herokuapp.com/people`)
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        res.forEach((person) => {
+          console.log(person.films[0]);
+          if (
+            person.films[0] ===
+            `https://ghibliapi.herokuapp.com/films/${callMovies.id}`
+          ) {
+            const li = document.createElement("li");
+            li.innerHTML = person.name;
+            ol.append(li);
+          }
+        });
+      });
+  });
+  peopleButton.reset();
 }
 
 // This function will "pause" the functionality expected on load long enough to allow Cypress to fully load
