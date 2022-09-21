@@ -48,15 +48,18 @@ fetch(BASE_URL)
                 }
             }
             let peopleButton=document.getElementById('show-people')
+
             let PEOPLE_URL ='https://ghibliapi.herokuapp.com/people'
+            
             let peopleNames=document.querySelector('ol')
-            let ul=document.querySelector('ul')
+            let ul =document.querySelector('ul')
+            
             peopleButton.addEventListener('click', (event)=> {
                 event.preventDefault()
                 fetch(PEOPLE_URL)
                 .then((res)=> res.json())
                 .then((people)=>{
-                    people.innerHTML = '';
+                    people.innerHTML = ' ';
                     for(let person of people){
                         for (let film of person.films){
 
@@ -75,24 +78,48 @@ fetch(BASE_URL)
      }
         
     })
-    // getReviews(json);
-
-
-
+  
 
 .catch((error)=>{
-    console.log(error);   
-});
+console.log(error);  
+
+
+    let reviewForm=document.querySelector('form') 
+    
+    getReviews(json);
+
+function getReviews(json){
 
 
 
+
+    reviewForm.addEventListener('submit',(event)=>{
+        event.preventDefault();
+        let reviewInput =document.getElementById('review').value;
+        if(dropdown.value ===' '){
+            alert(`Please select a movie first`);
+        }
+        else
+        {
+
+        let movie=json.find((movie)=> movie.id === dropdown.value)
+        let li = document.createElement('li')
+           li.innerHTML= `<strong>${movie.title}:</strong>${reviewInput}`
+          ul.append(li)
+        }
+
+
+       reviewForm.reset()
+    })
+
+}
 const displayData = (data) => {
     console.log(data);
 }
 const displayError =(error) =>{
     console.log(error)
 }
-
+})
 
 // This function will "pause" the functionality expected on load long enough to allow Cypress to fully load
 // So that testing can work as expected for now

@@ -5,4 +5,7 @@ body{
 header{
     width: 100% ;
     background: skyblue;
+    font: size 0px;
+    padding: 0px;
+    
 }
