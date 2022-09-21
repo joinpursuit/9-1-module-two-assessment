@@ -55,18 +55,22 @@ function run() {
     form.addEventListener("submit", (event) => {
         event.preventDefault()
 
-        
         let movieName = document.getElementById('titles')
         let movieTitleName = movieName.options[movieName.selectedIndex].value
         
-            console.log(movieTitleName)
-            let reviewInput = event.target.reviewText.value
-            const reviewList = document.createElement("li")
-            reviewList.innerHTML = `<strong>${movieTitleName}</strong>: ${reviewInput}`
-            form.append(reviewList)
+        
+        console.log(movieTitleName)
+        let reviewInput = event.target.reviewText.value
+        const reviewList = document.createElement("li")
+        reviewList.innerHTML = `<strong>${movieTitleName}</strong>: ${reviewInput}`
+        form.append(reviewList)
         
         // Use value in option to get movie name to display next to review. If option value = "" then display alert error.
         form.reset()
+        
+        if (movieTitleName === "") {
+            alert(`Please select a movie first`)
+        }
     })
 
     const resetButton = document.querySelector('#reset-reviews')
@@ -80,8 +84,6 @@ function run() {
         console.log("reset test") // Testing event listener.
     })
     
-   // Once that's displayed, I want it to be saved to an unordered list of list elements with the movie title in <strong> and the text review after. 
-   // I can do let writtenReview = document.createElement("li") and append that to a ul variable like let reviewList = document.querySelector("ul").
    // Error message of "Please select a movie" should come up when a user tries to leave a review without selecting a movie. 
    // This can be something like "if (the value of the movie in the dropdown menu !== or equal to nothing, then display error." Something like that.)
 
