@@ -1,0 +1,19 @@
+body {
+    background-color: lavender;
+    font-family: monospace;
+}
+
+img {
+    background-size: cover;
+    height: 150px
+}
+
+h1 {
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+header {
+    background-color: #87CEEB;
+}
