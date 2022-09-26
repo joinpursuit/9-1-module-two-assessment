@@ -1,0 +1,40 @@
+body{
+    font-family: monospace;
+    background-color: lavender;
+}
+
+header{
+    width: 75%;
+    background-color: skyblue;
+    display: flex;
+    justify-content: space-between;
+    
+}
+img{
+    height: 250px
+}
+
+.error{
+    font-size: 13px;
+    color: red;
+}
+
+.hidden{
+    display: none;
+}
+
+#titles:hover, #review:hover{
+    background-color: lightblue;
+}
+
+button:hover, .button:hover {
+    background-color: gray;
+}
+
+header{
+    border: 1px solid black;
+}
+
+h1{
+    margin: 0;
+}
