@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script defer  src="main.js"></script>
+    <title>Module 2 Assessment</title>
+</head>
+<body>
+
+    <header>
+        <img src="./images/ghibli-logo.png" alt="Ghibli logo">
+        <h1>Ghibli Review App</h1>
+    </header>
+
+    <main>  
+        <section class = "dropDownSection" >
+            <h2 class = "dropDownHeading">Select a movie</h2>
+            <select class = "dropDownList" name="" id="titles">
+                <option class="dropDownOption" value=""></option>
+            </select>
+        </section>
+
+        <section  id="reviews" class = "reviewSection" >
+            <h2 class ="reviewHeader">Add a review</h2>
+            <form  class = "reviewForm" action="">
+                <label  class ="reviewLabel" for="review">Your review</label>
+                <input id ='review' type="text" >
+                <input type="submit"  value  = "Submit review">
+            </form>
+        </section>
+
+        <section>
+            <h2>Movie details</h2>
+                    <!-- *** This div will be populated with 1 h3 and 2 p tags when movie is selected ***-->
+            <div id="display-info"></div>
+        </section>
+
+        <section class="peopleSection">
+            <h2 class="peopleHeader">People</h2>
+            <!--  *** This list will be populated with line items as people names are added ***-->
+            <button id="show-people">Show People</button>
+            <ol class="showPeopleList"></ol>
+
+
+        </section>
+
+        <section>
+            <h2>Reviews</h2>
+            <!-- *** Will be populated with line items as reviews are added ***-->
+            <button id="reset-reviews">Reset Reviews</button>
+            <ul id = "enteredReviews"></ul>
+
+        </section>
+    </main>
+</body>
+</html>
